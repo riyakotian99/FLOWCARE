@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/ngo.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4"
+     data-accepted="{% if accepted %}true{% else %}false{% endif %}"
+     data-display-name="{{ display|escape }}">
+  <h2>Join: {{ display }}</h2>
+
+  <div class="card p-3 mb-3">
+    <form method="post" novalidate>
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      <div class="mb-2">
+        <label for="id_name">Your name</label>
+        {{ form.name }}
+      </div>
+      <div class="mb-2">
+        <label for="id_phone">Phone</label>
+        {{ form.phone }}
+      </div>
+      <div class="mb-2">
+        <label for="id_email">Email</label>
+        {{ form.email }}
+      </div>
+      <div class="mb-2">
+        <label for="id_availability">Availability</label>
+        {{ form.availability }}
+      </div>
+      <div class="mb-2">
+        <label for="id_notes">Notes</label>
+        {{ form.notes }}
+      </div>
+
+      <button class="btn btn-primary" type="submit">Join</button>
+      <a href="{% url 'flowapp:ngo' %}" class="btn btn-outline-secondary">Cancel</a>
+    </form>
+  </div>
+
+  <!-- modal -->
+  <div class="modal fade" id="joinModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Welcome!</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Thanks — you have joined <strong>{{ display }}</strong>. A coordinator will contact you soon.</p>
+          <p class="small text-muted">This confirmation is predefined for demo purposes.</p>
+        </div>
+        <div class="modal-footer">
+          <a href="{% url 'flowapp:ngo' %}" class="btn btn-secondary">Back to NGO</a>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/volunteer_join.js' %}"></script>
+{% endblock %}

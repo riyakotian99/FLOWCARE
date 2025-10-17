@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'videos/css/videos.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container videos-page my-4">
+  <h2 class="mb-4 text-center"><strong>🎥 Videos & Podcasts</strong></h2>
+  <h6 class="mb-4 text-center"> Click on the links to see</h6>
+  <div class="row g-4">
+
+    <!-- Pad Hacks -->
+    <div class="col-md-6 col-lg-3">
+      <a href="https://pin.it/qTxm3gYWb" target="_blank" class="text-decoration-none">
+        <div class="card video-card h-100 shadow-sm">
+          <div class="card-body text-center">
+            <h5 class="card-title">🩸 Pad Hacks</h5>
+            <p class="card-text">Watch creative pad hacks for better comfort & use.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- How to Use a Pad -->
+    <div class="col-md-6 col-lg-3">
+      <a href="https://pin.it/1O1MIStYx" target="_blank" class="text-decoration-none">
+        <div class="card video-card h-100 shadow-sm">
+          <div class="card-body text-center">
+            <h5 class="card-title">📌 How to Use a Pad</h5>
+            <p class="card-text">Learn step-by-step how to properly use a pad.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- How to Use a Menstrual Cup -->
+    <div class="col-md-6 col-lg-3">
+      <a href="https://pin.it/4bF58INb7" target="_blank" class="text-decoration-none">
+        <div class="card video-card h-100 shadow-sm">
+          <div class="card-body text-center">
+            <h5 class="card-title">🥤 Menstrual Cup Guide</h5>
+            <p class="card-text">Step-by-step guide on using a menstrual cup safely.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- How to Use a Tampon -->
+    <div class="col-md-6 col-lg-3">
+      <a href="https://pin.it/6TxIIR9hU" target="_blank" class="text-decoration-none">
+        <div class="card video-card h-100 shadow-sm">
+          <div class="card-body text-center">
+            <h5 class="card-title">🧷 How to Use a Tampon</h5>
+            <p class="card-text">Learn how to insert & use a tampon correctly.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

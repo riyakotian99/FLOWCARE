@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'flowfinds/flowfinds.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="product-detail">
+  <div class="left">
+    {% if product.image_url %}
+      <img src="{{ product.image_url }}" alt="{{ product.title }}">
+    {% else %}
+      <!-- fallback placeholder -->
+      <div style="height:420px;display:flex;align-items:center;justify-content:center;background:#fff;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.04);">
+        <span class="muted">No image available</span>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="right">
+    <h2>{{ product.title }}</h2>
+    <div class="price">₹{{ product.price }}</div>
+    <p class="desc">{{ product.description }}</p>
+
+    <div class="buy-box">
+      <form method="post" action="{% url 'flowfinds:add_to_cart' product_id=product.id %}">
+        {% csrf_token %}
+        <label for="quantity">Quantity</label>
+        <div style="display:flex;gap:.5rem;align-items:center;margin-top:.35rem;">
+          <input id="quantity" class="qty-input" type="number" name="quantity" value="1" min="1">
+          <button class="btn-ff" type="submit">Add to cart</button>
+        </div>
+      </form>
+
+      <div style="margin-top:.6rem; color:var(--muted);">
+        <p>Stock: {{ product.stock }}</p>
+        <p class="muted" style="font-size:.9rem">Secure payments • Easy returns</p>
+      </div>
+    </div>
+
+    <div style="margin-top:1rem;">
+      <a href="{% url 'flowfinds:product_list' %}" class="btn-ghost">← Back to store</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+  <h1>MongoDB — flowcare.users</h1>
+  <p>Showing up to 200 users</p>
+
+  {% if users %}
+    {% for u in users %}
+      <div style="padding:12px; border:1px solid #eee; margin-bottom:12px;">
+        <h3 style="margin:0 0 6px 0;">User: {{ u.user_id }}</h3>
+        <p style="margin:0 0 8px 0;"><strong>Last seen:</strong> {{ u.last_seen }}</p>
+
+        <div style="display:flex; gap:24px;">
+          <div style="flex:1;">
+            <h4 style="margin-bottom:6px;">Recent cycles</h4>
+            {% if u.cycles %}
+              <table style="width:100%; border-collapse:collapse;">
+                <thead>
+                  <tr>
+                    <th style="text-align:left; border-bottom:1px solid #ddd; padding:6px;">Start</th>
+                    <th style="text-align:left; border-bottom:1px solid #ddd; padding:6px;">End</th>
+                    <th style="text-align:left; border-bottom:1px solid #ddd; padding:6px;">Period days</th>
+                    <th style="text-align:left; border-bottom:1px solid #ddd; padding:6px;">Cycle len</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for c in u.cycles %}
+                    <tr>
+                      <td style="padding:6px; border-bottom:1px solid #f7f7f7;">{{ c.start_date }}</td>
+                      <td style="padding:6px; border-bottom:1px solid #f7f7f7;">{{ c.end_date|default:"—" }}</td>
+                      <td style="padding:6px; border-bottom:1px solid #f7f7f7;">{{ c.period_length_days|default:"—" }}</td>
+                      <td style="padding:6px; border-bottom:1px solid #f7f7f7;">{{ c.cycle_length_days|default:"—" }}</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            {% else %}
+              <p><em>No cycles recorded</em></p>
+            {% endif %}
+          </div>
+
+          <div style="flex:1;">
+            <h4 style="margin-bottom:6px;">Recent daily logs</h4>
+            {% if u.logs %}
+              <table style="width:100%; border-collapse:collapse;">
+                <thead>
+                  <tr>
+                    <th style="text-align:left; border-bottom:1px solid #ddd; padding:6px;">Date</th>
+                    <th style="text-align:left; border-bottom:1px solid #ddd; padding:6px;">Mood</th>
+                    <th style="text-align:left; border-bottom:1px solid #ddd; padding:6px;">Flow</th>
+                    <th style="text-align:left; border-bottom:1px solid #ddd; padding:6px;">Symptoms</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for l in u.logs %}
+                    <tr>
+                      <td style="padding:6px; border-bottom:1px solid #f7f7f7;">{{ l.log_date }}</td>
+                      <td style="padding:6px; border-bottom:1px solid #f7f7f7;">{{ l.mood|default:"—" }}</td>
+                      <td style="padding:6px; border-bottom:1px solid #f7f7f7;">{{ l.flow|default:"—" }}</td>
+                      <td style="padding:6px; border-bottom:1px solid #f7f7f7;">{{ l.symptoms|join:", " }}</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            {% else %}
+              <p><em>No daily logs</em></p>
+            {% endif %}
+          </div>
+        </div>
+
+        {% if u.other_fields %}
+          <div style="margin-top:10px;">
+            <strong>Other fields:</strong>
+            <ul style="margin:6px 0 0 18px;">
+              {% for k, v in u.other_fields %}
+                <li><strong>{{ k }}:</strong> {{ v }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No users found</p>
+  {% endif %}
+{% endblock %}

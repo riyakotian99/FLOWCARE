@@ -1,0 +1,346 @@
+/* Reset styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Background with image and overlay */
+body {
+    background: url('../images/login.jpg');
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(180, 85, 145, 0.7); /* soft pink-purple overlay */
+    z-index: -1;
+}
+
+/* Login Box */
+.login-container {
+    background-color: #c9088f; /* pastel pink-purple */
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(110, 50, 90, 0.3);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Logo Text */
+.logo {
+    font-size: 32px;
+    font-weight: bold;
+    color: #7f3f71; /* deep purplish pink */
+    margin-bottom: 20px;
+}
+
+/* Inputs */
+form input[type="text"],
+form input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border: 1px solid #c08bc4; /* lighter purple border */
+    border-radius: 8px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+form input:focus {
+    border-color: #a64d90; /* bright purplish pink */
+    outline: none;
+    box-shadow: 0 0 8px rgba(166, 77, 144, 0.7);
+}
+
+/* Submit Button */
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background: linear-gradient(to right, #d66fa7, #a451a5); /* pink-purple gradient */
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background: linear-gradient(to right, #b13b7e, #782971); /* darker pink-purple */
+}
+
+/* Register link */
+.link {
+    margin-top: 20px;
+    font-size: 0.95rem;
+    color: #65446e; /* muted purple */
+}
+
+.link a {
+    color: #d66fa7; /* pink */
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.link a:hover {
+    text-decoration: underline;
+}
+@media (max-width: 480px) {
+    .login-container {
+        padding: 30px 20px;
+    }
+
+    .logo {
+        font-size: 28px;
+    }
+}
+/* Reset styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Background with image and overlay */
+body {
+    background: url('../images/login.jpg');
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(180, 85, 145, 0.7); /* soft pink-purple overlay */
+    z-index: -1;
+}
+
+/* Login Box */
+.login-container {
+    background-color:#d8a2c8; /* pastel pink-purple */
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(110, 50, 90, 0.3);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Logo Text */
+.logo {
+    font-size: 32px;
+    font-weight: bold;
+    color: #7f3f71; /* deep purplish pink */
+    margin-bottom: 20px;
+}
+
+/* Inputs */
+form input[type="text"],
+form input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border: 1px solid #c08bc4; /* lighter purple border */
+    border-radius: 8px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+form input:focus {
+    border-color: #a64d90; /* bright purplish pink */
+    outline: none;
+    box-shadow: 0 0 8px rgba(166, 77, 144, 0.7);
+}
+
+/* Submit Button */
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background: linear-gradient(to right, #d66fa7, #a451a5); /* pink-purple gradient */
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background: linear-gradient(to right, #b13b7e, #782971); /* darker pink-purple */
+}
+
+/* Register link */
+.link {
+    margin-top: 20px;
+    font-size: 0.95rem;
+    color: #65446e; /* muted purple */
+}
+
+.link a {
+    color: #a81264; /* pink */
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.link a:hover {
+    text-decoration: underline;
+}
+@media (max-width: 480px) {
+    .login-container {
+        padding: 30px 20px;
+    }
+
+    .logo {
+        font-size: 28px;
+    }
+}
+/* Reset styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Background with image and overlay */
+body {
+    background: url('../images/login.jpg');
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(180, 85, 145, 0.7); /* soft pink-purple overlay */
+    z-index: -1;
+}
+
+/* Login Box */
+.login-container {
+    background-color: #d8a2c8; /* pastel pink-purple */
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(110, 50, 90, 0.3);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Logo Text */
+.logo {
+    font-size: 32px;
+    font-weight: bold;
+    color: #7f3f71; /* deep purplish pink */
+    margin-bottom: 20px;
+}
+
+/* Inputs */
+form input[type="text"],
+form input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border: 1px solid #c08bc4; /* lighter purple border */
+    border-radius: 8px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+form input:focus {
+    border-color: #a64d90; /* bright purplish pink */
+    outline: none;
+    box-shadow: 0 0 8px rgba(166, 77, 144, 0.7);
+}
+
+/* Submit Button */
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background: linear-gradient(to right, #dc5da3, #a451a5); /* pink-purple gradient */
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background: linear-gradient(to right, #b13b7e, #782971); /* darker pink-purple */
+}
+
+/* Register link */
+.link {
+    margin-top: 20px;
+    font-size: 0.95rem;
+    color: #65446e; /* muted purple */
+}
+
+.link a {
+    color: #43102c; /* pink */
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.link a:hover {
+    text-decoration: underline;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;       /* full width */
+    padding: 12px;     /* padding inside input */
+    border-radius: 8px; /* rounded corners */
+    border: 1px solid #ccc;
+    box-sizing: border-box; /* ensures padding doesn't increase width */
+    font-size: 16px;
+    margin-bottom: 15px; /* space between inputs */
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        padding: 30px 20px;
+    }
+
+    .logo {
+        font-size: 28px;
+    }
+}
+

@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/diet.css' %}">
+
+<!-- Hero Section -->
+<div class="hero-image">
+  <img src="{% static 'images/eats.jpg' %}" alt="Healthy diet tips for women">
+</div>
+
+<!-- Section 1: Weight Loss -->
+<section id="weight-loss" class="section">
+  <h2>1. Diet for Weight Loss</h2>
+  <ul class="diet-list">
+    <li><strong>High protein foods:</strong> Eggs, chicken, fish, tofu, Greek yogurt. Helps maintain muscle and reduces cravings.</li>
+    <li><strong>Complex carbs:</strong> Brown rice, oats, quinoa, whole wheat bread. Avoid refined sugar.</li>
+    <li><strong>Fiber-rich foods:</strong> Vegetables, fruits (berries, apples), legumes. Helps digestion and satiety.</li>
+    <li><strong>Healthy fats:</strong> Olive oil, avocado, nuts, seeds.</li>
+    <li><strong>Avoid:</strong> Sugary drinks, fried foods, processed snacks.</li>
+    <li><strong>Tip:</strong> Eat smaller meals every 3–4 hours to maintain blood sugar.</li>
+  </ul>
+</section>
+
+<!-- Section 2: Weight Gain -->
+<section id="weight-gain" class="section">
+  <h2>2. Diet for Weight Gain</h2>
+  <ul class="diet-list">
+    <li><strong>Protein-rich foods:</strong> Eggs, dairy, chicken, lentils, paneer.</li>
+    <li><strong>Complex carbs:</strong> Sweet potatoes, oats, whole grains, brown rice.</li>
+    <li><strong>Healthy fats:</strong> Nuts, seeds, peanut butter, olive oil.</li>
+    <li><strong>Calorie-dense snacks:</strong> Smoothies with milk, banana, and nuts.</li>
+    <li><strong>Frequent meals:</strong> 5–6 small meals instead of 2–3 large ones.</li>
+    <li><strong>Tip:</strong> Combine strength training with diet for muscle gain.</li>
+  </ul>
+</section>
+
+<!-- Section 3: PCOS/PCOD -->
+<section id="pcos" class="section">
+  <h2>3. Diet for PCOS/PCOD</h2>
+  <ul class="diet-list">
+    <li><strong>Low GI foods:</strong> Whole grains, oats, barley, brown rice.</li>
+    <li><strong>Protein:</strong> Fish, chicken, tofu, legumes.</li>
+    <li><strong>Fiber:</strong> Vegetables (broccoli, spinach), fruits (berries, apple).</li>
+    <li><strong>Healthy fats:</strong> Avocado, olive oil, nuts, seeds.</li>
+    <li><strong>Avoid:</strong> Sugar, refined carbs (white bread, cakes), excessive dairy if acne is a problem.</li>
+    <li><strong>Spices:</strong> Cinnamon and turmeric help with insulin sensitivity.</li>
+    <li><strong>Tip:</strong> Regular meals + exercise improve hormone balance.</li>
+  </ul>
+</section>
+
+<!-- Section 4: General Nutrition Tips -->
+<section id="general-nutrition" class="section">
+  <h2>4. General Nutrition Tips for Women’s Health</h2>
+  <ul class="diet-list">
+    <li><strong>Iron-rich foods:</strong> Spinach, beans, red meat, dates to prevent period fatigue.</li>
+    <li><strong>Calcium & Vitamin D:</strong> Milk, yogurt, cheese, sunlight exposure.</li>
+    <li><strong>Magnesium & Potassium:</strong> Nuts, bananas, leafy greens reduce cramps & bloating.</li>
+    <li><strong>Hydration:</strong> Drink 2–3 liters of water daily.</li>
+    <li><strong>Avoid excessive caffeine & alcohol:</strong> They can worsen PMS symptoms.</li>
+  </ul>
+</section>
+
+<!-- Section 5: Extra Information -->
+<section id="extra-info" class="section">
+  <h2>5. Extra Information</h2>
+  <ul class="diet-list">
+    <li><strong>Exercise:</strong> Light cardio, yoga, and strength training improve weight management and PCOS symptoms.</li>
+    <li><strong>Sleep:</strong> 7–8 hours helps regulate hormones and cravings.</li>
+    <li><strong>Mood & PMS:</strong> Dark chocolate, chamomile tea, and magnesium-rich foods help.</li>
+    <li><strong>Supplements (if needed):</strong> Omega-3, vitamin D, inositol (especially for PCOS), but consult a doctor first.</li>
+  </ul>
+</section>
+
+{% endblock %}

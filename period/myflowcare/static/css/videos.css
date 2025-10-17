@@ -1,0 +1,15 @@
+.videos-page h2 {
+  color: #7a2e63; /* purple theme */
+  font-weight: 600;
+}
+
+.video-card {
+  border-radius: 15px;
+  transition: transform 0.2s ease-in-out;
+  background: linear-gradient(180deg, #fff6fb, #ffe6f0);
+}
+
+.video-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(122, 46, 99, 0.2);
+}

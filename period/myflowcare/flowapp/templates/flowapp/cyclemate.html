@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="cyclemate-page">
+  <div class="container" style="margin-top: 30px;">
+    <h2>CycleMate Prediction</h2>
+
+    {# --- Quick previous / latest / predicted info (shows immediately after adding a cycle) --- #}
+    {% if prev_info.latest_start %}
+    <div class="card" style="padding: 15px; margin-bottom: 20px;">
+      <p><strong>Latest Recorded Start:</strong> {{ prev_info.latest_start }}</p>
+      {% if prev_info.previous_start %}
+        <p><strong>Previous Recorded Start:</strong> {{ prev_info.previous_start }}</p>
+      {% endif %}
+      {% if prev_info.predicted_next %}
+        <p><strong>Predicted Next Start:</strong> {{ prev_info.predicted_next }}</p>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    {# --- Prediction block (more detailed) --- #}
+    {% if prediction %}
+    <div class="card" style="padding: 15px; margin-bottom: 20px;">
+        <p><strong>Predicted Start:</strong> {{ prediction.predicted_start }}</p>
+        <p><strong>Predicted End:</strong> {{ prediction.predicted_end }}</p>
+        <p><strong>Average Cycle Length:</strong> {{ prediction.avg_cycle_length_days }} days</p>
+        <p><strong>Average Period Length:</strong> {{ prediction.avg_period_length_days }} days</p>
+    </div>
+    {% else %}
+    <p>No cycle data yet. Please add your last period.</p>
+    {% endif %}
+
+    {# --- Ovulation block --- #}
+    {% if ovulation %}
+    <div class="card" style="padding: 15px; margin-bottom: 20px;">
+        <h3>Ovulation & Fertile Window</h3>
+        <p><strong>Ovulation Day:</strong> {{ ovulation.ovulation_day }}</p>
+        <p><strong>Fertile Window:</strong> {{ ovulation.fertile_start }} – {{ ovulation.fertile_end }}</p>
+    </div>
+    {% endif %}
+
+    {# --- Top symptoms --- #}
+    {% if top_symptoms %}
+    <div class="card" style="padding: 15px; margin-bottom: 20px;">
+      <h3>Common Pre-Period Symptoms</h3>
+      <ul>
+        {% for symptom, count in top_symptoms %}
+          <li>{{ symptom|title }} — {{ count }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    {# --- Actions --- #}
+    <div style="margin-top: 20px;">
+        <a href="{% url 'flowapp:add_cycle' %}" class="btn btn-success">Add New Cycle</a>
+        <a href="{% url 'flowapp:add_daily_log' %}" class="btn btn-primary">+ Add Daily Log</a>
+        <a href="{% url 'flowapp:list_daily_logs' %}" class="btn btn-info">View Daily Logs</a>
+        <a href="{% url 'flowapp:schedule_reminders' %}" class="btn btn-warning">Schedule Reminders</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

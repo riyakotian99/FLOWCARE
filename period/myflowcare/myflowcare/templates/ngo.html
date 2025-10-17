@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/ngo.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>NGO & Volunteer</h2>
+
+  <!-- Story with image -->
+  <div class="story-card mb-3 p-3 d-flex align-items-center">
+    <!-- Image -->
+    <div class="story-img">
+      <img src="{% static 'images/story1.jpg' %}" alt="Asha's Story">
+    </div>
+    <!-- Text -->
+    <div class="story-text">
+      <h4>{{ story.title }}</h4>
+      <p>{{ story.text }}</p>
+      <a href="{% url 'flowapp:ngo' %}#volunteers" class="small-link">Learn how to help →</a>
+    </div>
+  </div>
+
+  <!-- Volunteers -->
+  <h5 id="volunteers">Volunteers</h5>
+  <div class="cards-grid">
+    {% for slug, v in volunteers.items %}
+    <div class="vol-card">
+      <div class="vol-info">
+        <div class="vol-name">{{ v.name }}</div>
+        <div class="vol-role small-link">{{ v.role }} • {{ v.location }}</div>
+        <div class="vol-story">{{ v.story }}</div>
+      </div>
+      <div class="vol-actions">
+        <a class="btn btn-sm btn-outline-primary" href="{% url 'flowapp:ngo_join' slug 'person' %}">Join {{ v.name }}</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Groups -->
+  <h5 class="mt-4">Volunteer Groups</h5>
+  <div class="cards-grid">
+    {% for slug, g in groups.items %}
+    <div class="group-card">
+      <div class="group-info">
+        <div class="group-name">{{ g.name }}</div>
+        <div class="group-members small-link">{{ g.members }}</div>
+        <div class="group-summary">{{ g.summary }}</div>
+      </div>
+      <div class="group-actions">
+        <a class="btn btn-sm btn-primary" href="{% url 'flowapp:ngo_join' slug 'group' %}">Join Group</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Solo volunteering -->
+  <div class="solo-card mt-4 p-3">
+    <h6>Prefer to work alone?</h6>
+    <p>Choose to volunteer independently — we'll suggest tasks or let you organise drives on your own.</p>
+    <a class="btn btn-sm btn-success" href="{% url 'flowapp:ngo_join' 'solo' 'solo' %}">Volunteer Alone</a>
+  </div>
+</div>
+{% endblock %}

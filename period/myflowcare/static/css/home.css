@@ -1,0 +1,105 @@
+/* ==== Hero Section ==== */
+.hero {
+  text-align: center;
+  background: linear-gradient(135deg, #fce9f1 0%, #f7d7e9 100%);
+  color: #84286c;
+  padding: 80px 20px;
+  border-radius: 20px;
+  box-shadow: 0 12px 35px rgba(168, 80, 130, 0.2);
+  margin: 40px auto;
+  max-width: 1000px;
+}
+
+.hero h1 {
+  font-size: 2.6rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 6px rgba(132, 40, 108, 0.3);
+}
+
+.hero h2 {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #a64f92;
+  text-shadow: 0 1px 3px rgba(166, 79, 146, 0.3);
+}
+
+/* ==== Cards Section ==== */
+.home-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 12px 35px rgba(168, 80, 130, 0.15);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card h3 {
+  font-size: 1.4rem;
+  color: #84286c;
+  margin: 15px 0 10px;
+  font-weight: 700;
+}
+
+.card p {
+  font-size: 1rem;
+  color: #5a3a57;
+  margin: 0 15px 15px;
+  line-height: 1.5;
+}
+
+.card a {
+  display: inline-block;
+  margin-bottom: 20px;
+  text-decoration: none;
+  background-color: #f9c8dc;
+  color: #84286c;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+.card a:hover {
+  background-color: #f3a7cb;
+  color: #fff;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 45px rgba(168, 80, 130, 0.25);
+}
+
+/* ==== Responsive ==== */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.1rem;
+  }
+  .hero h2 {
+    font-size: 1.3rem;
+  }
+  .card img {
+    height: 160px;
+  }
+  .card h3 {
+    font-size: 1.2rem;
+  }
+  .card p {
+    font-size: 0.95rem;
+  }
+}

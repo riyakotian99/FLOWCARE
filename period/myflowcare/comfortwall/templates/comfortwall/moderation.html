@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'comfortwall/css/comfortwall.css' %}">
+{% endblock %}
+
+{% block content %}
+  {% include "comfortwall/_resource_banner.html" %}
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Moderation queue</h2>
+    <a href="{% url 'comfortwall:list' %}" class="btn btn-secondary">Back to wall</a>
+  </div>
+
+  {% if posts %}
+    <table class="table table-striped">
+      <thead>
+        <tr><th>When</th><th>Anon</th><th>Content</th><th>Actions</th></tr>
+      </thead>
+      <tbody>
+        {% for post in posts %}
+          <tr>
+            <td>{{ post.created_at|date:"M d, Y H:i" }}</td>
+            <td>{{ post.anon_name }}</td>
+            <td>{{ post.content|truncatechars:200 }}</td>
+            <td>
+              <form method="post" style="display:inline;">{% csrf_token %}
+                <input type="hidden" name="post_id" value="{{ post.id }}">
+                <button name="action" value="approve" class="btn btn-success btn-sm">Approve</button>
+              </form>
+
+              <form method="post" style="display:inline;">{% csrf_token %}
+                <input type="hidden" name="post_id" value="{{ post.id }}">
+                <button name="action" value="delete" class="btn btn-danger btn-sm">Delete</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No posts awaiting moderation.</p>
+  {% endif %}
+{% endblock %}

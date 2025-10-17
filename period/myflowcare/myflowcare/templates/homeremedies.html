@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/homeremedies.css' %}">
+
+<!-- Hero Section -->
+<div class="hero-image">
+  <img src="{% static 'images/herbs.jpg' %}" alt="Comforting home remedies for periods"> 
+</div>
+
+<!-- Section 1: Cramps -->
+<section id="cramps" class="section">
+  <h2>1. Relieve Menstrual Cramps</h2>
+  <div class="cards">
+    <article class="card">
+      <img src="{% static 'images/hotwater.jpg' %}" alt="Heating pad on abdomen">
+      <h3>Heat therapy</h3>
+      <p>Apply a hot water bag or heating pad to your lower abdomen for 15–20 minutes. It relaxes uterine muscles and eases pain.</p>
+    </article>
+    <article class="card">
+      <img src="{% static 'images/gingertea.jpg' %}" alt="Cup of ginger tea">
+      <h3>Ginger tea</h3>
+      <p>Ginger has anti-inflammatory properties. Boil fresh ginger slices in water and drink 2–3 times a day.</p>
+    </article>
+    <article class="card">
+      <img src="{% static 'images/cinnamon.jpg' %}" alt="Cinnamon sticks and powder">
+      <h3>Cinnamon</h3>
+      <p>Add cinnamon powder to warm milk or tea to help reduce cramps and excessive bleeding.</p>
+    </article>
+    <article class="card">
+      <img src="{% static 'images/fennel.jpg' %}" alt="Fennel seeds">
+      <h3>Fennel seeds</h3>
+      <p>Chew fennel seeds or drink fennel tea to relax muscles and reduce cramps.</p>
+    </article>
+  </div>
+</section>
+
+<!-- Section 2: Bloating -->
+<section id="bloating" class="section">
+  <h2>2. Reduce Bloating &amp; Water Retention</h2>
+  <div class="cards">
+    <article class="card">
+      <img src="{% static 'images/warmwater.webp' %}" alt="Glass of warm water">
+      <h3>Warm water</h3>
+      <p>Drink warm water throughout the day to reduce water retention.</p>
+    </article>
+    <article class="card">
+      <img src="{% static 'images/banana.jpg' %}" alt="Bananas">
+      <h3>Bananas</h3>
+      <p>Rich in potassium, bananas help reduce bloating and fluid retention.</p>
+    </article>
+    <article class="card">
+      <img src="{% static 'images/parsleytea.webp' %}" alt="Parsley tea">
+      <h3>Parsley tea</h3>
+      <p>Acts as a natural diuretic and eases bloating.</p>
+    </article>
+  </div>
+</section>
+
+<!-- Section 3: Mood -->
+<section id="mood" class="section">
+  <h2>3. Mood Swings &amp; Emotional Balance</h2>
+  <div class="cards">
+    <article class="card">
+      <img src="{% static 'images/choco.jpg' %}" alt="Dark chocolate pieces">
+      <h3>Dark chocolate</h3>
+      <p>In moderation, it can boost serotonin and lift mood.</p>
+    </article>
+    <article class="card">
+      <img src="{% static 'images/chamomiletea.jpg' %}" alt="Chamomile tea cup">
+      <h3>Chamomile tea</h3>
+      <p>Helps reduce anxiety and relax the mind.</p>
+    </article>
+    <article class="card">
+      <img src="{% static 'images/yoga.jpg' %}" alt="Person doing gentle yoga">
+      <h3>Light exercise</h3>
+      <p>Light walking or yoga improves mood and reduces stress.</p>
+    </article>
+  </div>
+</section>
+
+<!-- Section 4: Fatigue -->
+<section id="fatigue" class="section">
+  <h2>4. Menstrual Fatigue &amp; Low Energy</h2>
+  <div class="cards">
+    <article class="card">
+      <img src="{% static 'images/nuts.jpg' %}" alt="Dates and mixed nuts">
+      <h3>Dates &amp; nuts</h3>
+      <p>Provide quick energy from natural sugars and healthy fats.</p>
+    </article>
+    <article class="card">
+      <img src="{% static 'images/hydration.jpg' %}" alt="Bottle of water and herbal tea">
+      <h3>Hydration</h3>
+      <p>Drink enough water or herbal teas to combat fatigue.</p>
+    </article>
+    <article class="card">
+      <img src="{% static 'images/iron.jpg' %}" alt="Spinach, beetroot, and lentils">
+      <h3>Iron-rich foods</h3>
+      <p>Spinach, beetroot, and lentils help prevent weakness from blood loss.</p>
+    </article>
+  </div>
+</section>
+
+<!-- Section 5: Heavy Bleeding -->
+<section id="bleeding" class="section">
+  <h2>5. Heavy Bleeding</h2>
+  <div class="cards">
+    <article class="card">
+      <img src="{% static 'images/raspberrytea.jpg' %}" alt="Raspberry leaf tea">
+      <h3>Raspberry leaf tea</h3>
+      <p>May help tone the uterus and regulate bleeding.</p>
+    </article>
+    <article class="card">
+      <img src="{% static 'images/yogurt.jpg' %}" alt="Bowl of yogurt">
+      <h3>Yogurt</h3>
+      <p>Probiotics support overall hormonal balance.</p>
+    </article>
+    <article class="card">
+      <img src="{% static 'images/coffee.jpg' %}" alt="Salt shaker and coffee cup crossed out">
+      <h3>Avoid excess salt &amp; caffeine</h3>
+      <p>They can worsen bloating and may aggravate bleeding.</p>
+    </article>
+  </div>
+</section>
+
+<!-- Section 6: Anti-Inflammatories -->
+<section id="anti-inflammatory" class="section">
+  <h2>6. Natural Anti-Inflammatories</h2>
+  <div class="cards">
+    <article class="card">
+      <img src="{% static 'images/milk.jpg' %}" alt="Glass of turmeric milk">
+      <h3>Turmeric milk</h3>
+      <p>Mix ½ tsp turmeric in warm milk to reduce inflammation and ease pain.</p>
+    </article>
+    <article class="card">
+      <img src="{% static 'images/pepper.jpg' %}" alt="Peppermint tea">
+      <h3>Peppermint tea</h3>
+      <p>Relaxes muscles and may relieve period-related headaches.</p>
+    </article>
+  </div>
+</section>
+
+<!-- Section 7: Other Tips -->
+<section id="others" class="section">
+  <h2>7. Other Tips</h2>
+  <ul class="bullets">
+    <li><strong>Proper rest:</strong> Adequate sleep improves mood and reduces fatigue.</li>
+    <li><strong>Warm baths:</strong> Soothe cramps and release tension.</li>
+    <li><strong>Acupressure:</strong> Gentle pressure on lower back, feet, or wrists may help pain.</li>
+  </ul>
+
+  <div class="pro-tip">
+    <h3>💡 Pro tip</h3>
+    <p>Keep a small “period kit” with ginger tea, a heating pad, nuts, and a water bottle—super handy for managing symptoms naturally.</p>
+  </div>
+</section>
+
+{% endblock %}

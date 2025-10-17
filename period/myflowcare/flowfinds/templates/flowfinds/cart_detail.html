@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'flowfinds/flowfinds.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="cart-list">
+  <h2><strong>Your Cart🛒</strong> </h2>
+
+  {% if items %}
+    {% for it in items %}
+      <div class="cart-item">
+        {% if it.product.image_url %}
+          <img src="{{ it.product.image_url }}" alt="{{ it.product.title }}">
+        {% endif %}
+        <div class="ci-info">
+          <div class="ci-title">{{ it.product.title }}</div>
+          <div class="ci-meta">
+            Qty: {{ it.qty }} &nbsp;|&nbsp; ₹{{ it.line_total }}
+          </div>
+          <a href="{% url 'flowfinds:remove_from_cart' product_id=it.product.id %}" class="btn-ghost">Remove</a>
+        </div>
+      </div>
+    {% endfor %}
+
+    <div class="cart-summary">
+      <p><strong>Total: ₹{{ total }}</strong></p>
+      <a href="{% url 'flowfinds:checkout' %}" class="checkout-btn">Checkout</a>
+    </div>
+  {% else %}
+    <p class="muted">Your cart is empty.</p>
+  {% endif %}
+</div>
+{% endblock %}

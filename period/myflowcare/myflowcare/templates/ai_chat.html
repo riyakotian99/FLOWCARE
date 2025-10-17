@@ -1,0 +1,108 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>FlowCare — AI Chat</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <!-- External CSS (make sure you created static/css/ai-chat.css) -->
+  <link rel="stylesheet" href="{% static 'css/ai_chat.css' %}">
+
+  <!-- You can remove this inline CSS if you are using ai-chat.css -->
+  <style>
+    body { font-family: Arial, sans-serif; max-width:900px; margin: 1rem auto; padding: 0 1rem; }
+    #chat { border:1px solid #92507f; padding:1rem; height:60vh; overflow:auto; background:#c292ad; }
+    .msg { margin: .5rem 0; padding:.6rem; border-radius:8px; max-width:80%; }
+    .user { background:#b67fac; margin-left:auto; text-align:right; }
+    .bot  { background:#b9729f; margin-right:auto; text-align:left; }
+    #inputRow { display:flex; gap:.5rem; margin-top:.75rem; }
+    input#msg { flex:1; padding:.6rem; border-radius:6px; border:1px solid #91477f; }
+    button { padding:.6rem 1rem; border-radius:6px; border:none; background:#853967; color:#de62a8; cursor:pointer; }
+    button[disabled] { opacity:.6; cursor:default; }
+  </style>
+</head>
+<body>
+  <h1><strong>FlowCare — Ask the AI</strong></h1>
+
+  <div id="chat" aria-live="polite"></div>
+
+  <div id="inputRow">
+    {% csrf_token %}
+    <input id="msg" placeholder="Ask me anything..." autocomplete="off" />
+    <button id="send">Send</button>
+  </div>
+
+<script>
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+    const cookies = document.cookie.split(';');
+    for (const cookie of cookies) {
+      const c = cookie.trim();
+      if (c.startsWith(name + '=')) {
+        cookieValue = decodeURIComponent(c.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+const csrftoken = getCookie('csrftoken');
+
+const chat = document.getElementById('chat');
+const msgInput = document.getElementById('msg');
+const sendBtn = document.getElementById('send');
+
+function appendMessage(text, who){
+  const d = document.createElement('div');
+  d.className = 'msg ' + (who === 'user' ? 'user' : 'bot');
+  d.textContent = text;
+  chat.appendChild(d);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+async function sendMessage(){
+  const text = msgInput.value.trim();
+  if (!text) return;
+  appendMessage(text, 'user');
+  msgInput.value = '';
+  sendBtn.disabled = true;
+  appendMessage('…', 'bot'); // temporary typing indicator
+  try {
+    const res = await fetch('/api/ai_chat/', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json', 'X-CSRFToken': csrftoken},
+      body: JSON.stringify({message: text})
+    });
+    const payload = await res.json();
+    // remove last typing indicator
+    const nodes = chat.querySelectorAll('.msg.bot');
+    if (nodes.length) nodes[nodes.length-1].remove();
+
+    if (!res.ok) {
+      appendMessage('Error: ' + (payload.error || res.status), 'bot');
+      console.error(payload);
+    } else {
+      appendMessage(payload.reply || 'No reply', 'bot');
+    }
+  } catch (err) {
+    console.error(err);
+    // remove typing indicator
+    const nodes = chat.querySelectorAll('.msg.bot');
+    if (nodes.length) nodes[nodes.length-1].remove();
+    appendMessage('Network error. Try again.', 'bot');
+  } finally {
+    sendBtn.disabled = false;
+    msgInput.focus();
+  }
+}
+
+sendBtn.addEventListener('click', sendMessage);
+msgInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') sendMessage(); });
+
+// focus input on load
+msgInput.focus();
+</script>
+</body>
+</html>

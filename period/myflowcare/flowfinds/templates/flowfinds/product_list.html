@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'flowfinds/flowfinds.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-flowfinds">
+  <div class="flowfinds-hero">
+    <h1><strong>FlowFinds— Products🛍️</strong></h1>
+    <p>Period essentials — pads, tampons, cups, discs, and more</p>
+  </div>
+
+  <div class="product-grid">
+    {% for p in products %}
+      <div class="ff-card">
+        <div class="img-wrap">
+          {% if p.image_url %}
+            <img src="{{ p.image_url }}" alt="{{ p.title }}">
+          {% else %}
+            <span class="muted">No image</span>
+          {% endif %}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">
+            <a href="{% url 'flowfinds:product_detail' slug=p.slug %}">{{ p.title }}</a>
+          </h5>
+          <p class="ff-price">₹{{ p.price }}</p>
+
+          <form method="post" action="{% url 'flowfinds:add_to_cart' product_id=p.id %}">
+            {% csrf_token %}
+            <div class="ff-actions">
+              <input type="number" name="quantity" value="1" min="1" class="qty-input">
+              <button class="btn-ff btn-sm" type="submit">Add</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

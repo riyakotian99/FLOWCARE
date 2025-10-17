@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+<!-- Hero Section -->
+<section class="hero">
+    <h1>Welcome {{ user.username }} to FlowCare</h1>
+    <h2>Your personalized journey to menstrual health and comfort starts here</h2>
+</section>
+
+<!-- Cards Section -->
+<div class="home-cards">
+
+  <!-- Home Remedies -->
+  <div class="card">
+    <img src="{% static 'images/homeremedies.jpg' %}" alt="Home Remedies">
+    <h3>Home Remedies</h3>
+    <p>Natural and effective remedies to ease menstrual discomfort and promote well-being.</p>
+    <a href="{% url 'flowapp:homeremedies' %}">Explore remedies →</a>
+  </div>
+
+  <!-- Diet Recommendations -->
+  <div class="card">
+    <img src="{% static 'images/diet.jpg' %}" alt="Diet Recommendations">
+    <h3>Diet Recommendations</h3>
+    <p>Nutritional guidance to help manage symptoms and boost your energy during your cycle.</p>
+    <a href="{% url 'flowapp:diet' %}">View recommendations →</a>
+  </div>
+
+  <!-- Myth-Busting Quiz -->
+  <div class="card">
+    <img src="{% static 'images/fact.png' %}" alt="Myth-Busting">
+    <h3>Myth-Busting</h3>
+    <p>Separating facts from fiction about menstrual health with evidence-based information.</p>
+    <a href="{% url 'flowapp:ai_chat_page' %}">Discover truths →</a>
+  </div>
+
+  <!-- Videos & Podcasts -->
+  <div class="card">
+    <img src="{% static 'images/vp.jpg' %}" alt="Videos and Podcasts">
+    <h3>Videos & Podcasts</h3>
+    <p>Engaging multimedia content to educate and empower you about menstrual health.</p>
+    <a href="{% url 'flowapp:videos_podcasts' %}">Watch & listen →</a>
+  </div>
+
+  <!-- Self-Care Tips -->
+  <div class="card">
+    <img src="{% static 'images/selfcare.jpg' %}" alt="Self-Care Tips">
+    <h3>Self-Care Tips</h3>
+    <p>Gentle practices to nurture yourself physically and emotionally throughout your cycle.</p>
+    <a href="{% url 'flowapp:care' %}">Relax & rejuvenate →</a>
+  </div>
+   
+  <!-- Gynecologists -->
+  <div class="card">
+    <img src="{% static 'images/gynecologists.jpg' %}" alt="Gynecologists">
+    <h3>Gynecologists & Consultants</h3>
+    <p>Find phone numbers of trusted gynecologists and clinics — quick call links for appointments.</p>
+    <a href="{% url 'flowapp:gynecologists' %}">View Contacts →</a>
+  </div>
+
+  <!-- NGO & Volunteering -->
+  <div class="card">
+    <img src="{% static 'images/ngo.jpg' %}" alt="NGO & Volunteering">
+    <h3>NGO & Volunteering</h3>
+    <p>Read inspiring stories, join volunteer groups, or choose to contribute on your own journey.</p>
+    <a href="{% url 'flowapp:ngo' %}">Join Now →</a>
+  </div>
+
+</div>
+{% endblock %}

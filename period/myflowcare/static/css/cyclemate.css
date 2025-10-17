@@ -1,0 +1,349 @@
+/* flowapp/static/css/cyclemate.css
+   Enhanced CycleMate styles — scoped to .cyclemate-page
+   - Uses CSS variables for easy theming
+   - Improved accessibility (focus, contrast) and responsiveness
+*/
+
+/* --------------------
+   Theme variables
+   -------------------- */
+:root {
+  /* Colors */
+  --bg: #ffffff;
+  --text: #4a2c40;
+  --muted: #9e5f89;
+  --card-border: #f3a7cb;
+  --card-bg: #ffffff;
+  --soft-pink: #fdf2f8;
+  --pink-600: #e05c99;
+  --pink-700: #7a2e63;
+  --accent-shadow: rgba(168, 80, 130, 0.12);
+
+  --mint-500: #34d399;
+  --mint-400: #a7f3d0;
+
+  --sky-400: #38bdf8;
+  --sky-300: #7dd3fc;
+
+  --yellow-400: #f59e0b;
+  --yellow-300: #fcd34d;
+
+  /* Spacing & shapes */
+  --container-max: 980px;
+  --gutter: 16px;
+  --radius-lg: 12px;
+  --radius-md: 8px;
+
+  /* Typography */
+  --font-sans: "Helvetica Neue", Arial, sans-serif;
+  --h2-size: 1.6rem;
+  --card-h3-size: 1.15rem;
+
+  /* Elevation */
+  --shadow-soft: 0 6px 18px var(--accent-shadow);
+  --shadow-sm: 0 4px 8px rgba(0,0,0,0.06);
+
+  /* Motion */
+  --ease: cubic-bezier(.2,.9,.3,1);
+  --transition-fast: 160ms var(--ease);
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  :root { --transition-fast: 0ms; }
+}
+
+/* --------------------
+   Scoped container
+   -------------------- */
+.cyclemate-page .container {
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+  font-family: var(--font-sans);
+  color: var(--text);
+  line-height: 1.45;
+}
+
+/* Page heading */
+.cyclemate-page h2 {
+  font-size: var(--h2-size);
+  margin-bottom: 12px;
+  color: var(--pink-700);
+  font-weight: 700;
+}
+
+/* --------------------
+   Cards
+   -------------------- */
+.cyclemate-page .card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  padding: 18px;
+  margin-bottom: 18px;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+.cyclemate-page .card:focus-within,
+.cyclemate-page .card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(168,80,130,0.14);
+}
+
+/* Card headings */
+.cyclemate-page .card h3 {
+  margin: 0 0 10px 0;
+  font-size: var(--card-h3-size);
+  color: var(--pink-700);
+  font-weight: 700;
+}
+
+/* --------------------
+   Buttons (scoped)
+   -------------------- */
+.cyclemate-page .btn {
+  display: inline-block;
+  padding: 8px 14px;
+  font-size: 0.95rem;
+  border-radius: 10px;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  line-height: 1;
+  margin-right: 8px;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), opacity var(--transition-fast);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Hover / active */
+.cyclemate-page .btn:hover { transform: translateY(-2px); opacity: 0.98; }
+.cyclemate-page .btn:active { transform: translateY(0); }
+.cyclemate-page .btn:focus { outline: none; box-shadow: 0 0 0 4px rgba(243,167,203,0.18); border-radius: 10px; }
+
+/* Primary */
+.cyclemate-page .btn-primary {
+  background: linear-gradient(180deg, #f38ab7 0%, var(--pink-600) 100%);
+  color: #ffffff;
+  border-color: var(--card-border);
+  box-shadow: 0 6px 12px rgba(243,167,203,0.28);
+  font-weight: 600;
+}
+
+/* Success */
+.cyclemate-page .btn-success {
+  background: linear-gradient(180deg, var(--mint-400) 0%, var(--mint-500) 100%);
+  color: #064e3b;
+  font-weight: 700;
+}
+
+/* Info */
+.cyclemate-page .btn-info {
+  background: linear-gradient(180deg, var(--sky-300) 0%, var(--sky-400) 100%);
+  color: #083344;
+  font-weight: 700;
+}
+
+/* Warning */
+.cyclemate-page .btn-warning {
+  background: linear-gradient(180deg, var(--yellow-300) 0%, var(--yellow-400) 100%);
+  color: #78350f;
+  font-weight: 700;
+}
+
+/* Ghost (outline) */
+.cyclemate-page .btn-ghost {
+  background: transparent;
+  border: 1px solid var(--card-border);
+  color: var(--pink-700);
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+}
+.cyclemate-page .btn-ghost:hover {
+  background-color: #fff0f7;
+  color: var(--pink-700);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Make anchor links (a.btn) behave like buttons */
+.cyclemate-page a.btn { text-align: center; display: inline-block; }
+
+/* Accessibility: keyboard focus */
+.cyclemate-page .btn:focus-visible {
+  outline: 3px solid rgba(122,46,99,0.16);
+  outline-offset: 3px;
+}
+
+/* --------------------
+   Tables
+   -------------------- */
+.cyclemate-page .table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 0;
+  font-size: 0.95rem;
+  background: transparent;
+}
+.cyclemate-page .table th,
+.cyclemate-page .table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #f9c8dc;
+  text-align: left;
+}
+.cyclemate-page .table thead th {
+  background: var(--soft-pink);
+  font-weight: 600;
+  color: var(--pink-700);
+  border-bottom: 2px solid var(--card-border);
+}
+.cyclemate-page .table tbody tr:nth-child(odd) { background: #ffffff; }
+.cyclemate-page .table tbody tr:nth-child(even) { background: #fff5f9; }
+
+/* Responsive table container */
+.cyclemate-page .table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 10px;
+}
+
+/* Small text helper */
+.cyclemate-page .small { font-size: 0.85rem; color: var(--muted); }
+
+/* --------------------
+   Form controls
+   -------------------- */
+.cyclemate-page form input[type="date"],
+.cyclemate-page form select,
+.cyclemate-page form textarea,
+.cyclemate-page form input[type="text"],
+.cyclemate-page form input[type="number"] {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  background: var(--bg);
+  box-sizing: border-box;
+  transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+.cyclemate-page form input:focus,
+.cyclemate-page form select:focus,
+.cyclemate-page form textarea:focus {
+  outline: none;
+  box-shadow: 0 2px 10px rgba(243,167,203,0.12);
+  border-color: rgba(243,167,203,0.9);
+}
+
+/* Textarea */
+.cyclemate-page form textarea { resize: vertical; min-height: 100px; }
+
+/* Checkbox list */
+.cyclemate-page .checkbox-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 8px 12px;
+  margin-top: 8px;
+}
+.cyclemate-page .checkbox-list label {
+  background: #fff5f9;
+  border: 1px solid var(--card-border);
+  padding: 7px 10px;
+  border-radius: var(--radius-md);
+  display: inline-block;
+  cursor: pointer;
+  font-size: 0.92rem;
+  color: var(--pink-700);
+}
+
+/* --------------------
+   Badges & empty state
+   -------------------- */
+.cyclemate-page .badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #f9c8dc;
+  color: var(--pink-700);
+  font-weight: 600;
+  font-size: 0.82rem;
+  margin-left: 6px;
+}
+
+.cyclemate-page .empty-state {
+  padding: 18px;
+  border: 1px dashed var(--card-border);
+  border-radius: var(--radius-md);
+  background: #fff5f9;
+  color: var(--muted);
+}
+
+/* --------------------
+   Responsive layout for action area
+   -------------------- */
+.cyclemate-page .actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+/* --------------------
+   Utility classes
+   -------------------- */
+.cyclemate-page .text-muted { color: var(--muted); }
+.cyclemate-page .center { text-align: center; }
+.cyclemate-page .mb-8 { margin-bottom: 8px; }
+
+/* subtle focus outline for keyboard users */
+.cyclemate-page :focus { outline-offset: 4px; }
+
+/* --------------------
+   Accessibility helpers
+   -------------------- */
+/* Ensure decent contrast for important elements */
+.cyclemate-page .btn-primary, .cyclemate-page .btn-success, .cyclemate-page .btn-info, .cyclemate-page .btn-warning {
+  /* fallback for low-contrast environments */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --------------------
+   Reduced-motion users
+   -------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .cyclemate-page .card,
+  .cyclemate-page .btn,
+  .cyclemate-page .btn:hover {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* --------------------
+   Small-screen tweaks
+   -------------------- */
+@media (max-width: 640px) {
+  .cyclemate-page .container { padding-left: 12px; padding-right: 12px; }
+  .cyclemate-page .card { padding: 12px; border-radius: 10px; }
+  .cyclemate-page .btn { padding: 8px 10px; font-size: 0.92rem; margin-bottom: 8px; display: inline-block; }
+  .cyclemate-page .checkbox-list { grid-template-columns: repeat(2, 1fr); }
+  .cyclemate-page .actions { flex-direction: column; align-items: stretch; }
+}
+
+/* --------------------
+   Minor visual polish
+   -------------------- */
+/* subtle divider under page header area */
+.cyclemate-page .container > h2 + .card { margin-top: 6px; }
+
+/* ensure anchor look inside tables doesn't overflow */
+.cyclemate-page table a { word-break: break-word; }
+
+/* small fix for btn-ghost contrast (hover) */
+.cyclemate-page .btn-ghost:hover { background-color: #fff0f7; color: var(--pink-700); }
+
+/* end of file */

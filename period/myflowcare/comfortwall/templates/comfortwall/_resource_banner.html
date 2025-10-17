@@ -1,0 +1,95 @@
+{% load static %}
+
+<style>
+/* Infobox stack with FlowCare pinks */
+.info-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 72%;
+  margin-bottom: 1rem;
+}
+
+.infobox {
+  position: relative;
+  border-radius: 12px;
+  padding: 14px 18px;
+}
+
+/* headline (lighter pink box) */
+.infobox--headline {
+  background: #ffe6f0;                /* very light pink */
+  border: 3px solid #f85a8f;          /* bright accent pink */
+  color: #b01750;                     /* deep pink text */
+  font-weight: 800;
+  padding: 12px 16px;
+  text-align: left;
+}
+
+/* body (stronger pink box) */
+.infobox--body {
+  background: #db7b9b;                /* main FlowCare pink */
+  border: 3px solid #d63a70;          /* darker border */
+  color: #fff;                        /* white text */
+  font-weight: 700;
+  padding: 16px 20px;
+  text-align: center;
+}
+
+.infobox--body .comfort-banner__muted {
+  display: block;
+  margin-top: 0.5rem;
+  font-weight: 500;
+  font-size: 0.92rem;
+  color: #ffe6f0;                     /* lighter pink for muted line */
+}
+/* ComfortWall title styling */
+.comfort-banner__title {
+  margin-top: 1.2rem;
+  font-size: 2rem;                     /* slightly larger */
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-align: center;
+
+  /* Gradient text effect */
+  background: linear-gradient(90deg, #f85a8f, #d63a70);
+  background-clip: text;                  /* Standard */
+  -webkit-background-clip: text;          /* WebKit (Chrome, Safari, Edge) */
+  color: transparent;                     /* Standard */
+  -webkit-text-fill-color: transparent;   /* WebKit */
+}
+</style>
+
+<section class="comfort-banner comfort-banner--hero" role="region" aria-label="ComfortWall notice">
+  <div class="comfort-banner__inner">
+    <div class="comfort-banner__notice">
+
+      <!-- ✅ Infographic stacked boxes -->
+      <div class="info-stack">
+        <div class="infobox infobox--headline">
+          <div class="infobox-content">
+            If you or someone is in immediate danger, call your local emergency number.
+          </div>
+        </div>
+
+        <div class="infobox infobox--body">
+          <div class="infobox-content">
+            A safe (and slightly dramatic) space for all things cramps, cravings, and chaos.
+            Share your pain, your funny moments, your uterus horror stories — or just ask for snacks.
+            <span class="comfort-banner__muted">
+              No names. No shame. Just blood, bloating, and bonding.
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- ✅ End of stacked section -->
+
+    </div>
+
+    <div class="comfort-banner__actions">
+      <a href="{% url 'comfortwall:create' %}" class="btn btn-primary btn-hero">Share anonymously</a>
+    </div>
+  </div>
+
+  <h2 class="comfort-banner__title">ComfortWall</h2>
+</section>

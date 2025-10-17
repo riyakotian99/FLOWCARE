@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container" style="margin-top: 30px;">
+    <h2>Your Recent Daily Logs</h2>
+
+    <p>
+        <a href="{% url 'flowapp:add_daily_log' %}" class="btn btn-primary">+ Add New Log</a>
+    </p>
+
+    <div class="card" style="padding: 15px;">
+        {% if logs %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Mood</th>
+                    <th>Flow</th>
+                    <th>Symptoms</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in logs %}
+                <tr>
+                    <td>{{ row.date }}</td>
+                    <td>{{ row.mood|default:"—" }}</td>
+                    <td>{{ row.flow|default:"—" }}</td>
+                    <td>{{ row.symptoms|default:"—" }}</td>
+                    <td>{{ row.notes|default:"" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No logs yet. Add your first one!</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

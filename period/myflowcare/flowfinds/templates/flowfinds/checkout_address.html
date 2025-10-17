@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-flowfinds" style="max-width:720px;">
+  <div class="flowfinds-hero">
+    <h1><strong>Delivery address🚚</strong></h1>
+  </div>
+
+  <!-- Add checkout-address class here -->
+  <div class="checkout-address">
+    <form method="post" class="checkout-form">
+      {% csrf_token %}
+      {{ form.as_p }}
+
+      <p class="payment-note">Payment method: <strong>Cash on Delivery</strong></p>
+
+      <div class="form-actions">
+        <button class="btn-ff" type="submit">Place order — Cash on Delivery</button>
+        <a href="{% url 'flowfinds:cart_detail' %}" class="btn-ghost">Back to cart</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

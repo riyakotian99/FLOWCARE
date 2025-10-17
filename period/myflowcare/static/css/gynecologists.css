@@ -1,0 +1,194 @@
+/* static/css/gynecologists.css
+   Clean responsive card layout for Gynecologists & Consultants
+*/
+
+:root {
+  --accent: #d6336c;       /* main pink */
+  --accent-hover: #e85c88; /* hover pink */
+  --muted: #6b7280;
+  --bg: #f9fafc;
+  --card-bg: #fff;
+  --radius: 12px;
+  --shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+/* make sure sizing is predictable */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.page-title {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--accent);
+  border-left: 6px solid var(--accent);
+  padding-left: 12px;
+  margin-bottom: 0.4rem;
+}
+
+.lead {
+  color: var(--muted);
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+/* -------- Cards Grid (flex with wrap) -------- */
+/* Using flexbox so cards wrap naturally and leftovers drop to next row */
+.cards-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  margin-top: 1rem;
+}
+
+  /* optional: add slight negative margin if you want cards to line up flush with container edges
+     margin-left: -0.5rem; margin-right: -0.5rem; */
+.doctor-card {
+  flex: 1 1 320px;
+  min-width: 320px; /* fixes wrapping */
+}
+
+/* Each card will try to be at least 320px wide, but will shrink/grow as needed.
+   This results in ~3 columns on wide screens, 2 on medium, 1 on narrow. */
+.doctor-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding: 1rem;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  border: 1px solid #eee;
+  box-shadow: var(--shadow);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  flex: 1 1 320px;    /* grow | shrink | base-width */
+  min-width: 240px;   /* ensures card doesn't become too narrow */
+  max-width: 100%;
+}
+
+/* optional visual constraint so each row doesn't create very tall cards when space is odd */
+
+/* hover */
+.doctor-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  border-color: var(--accent);
+}
+
+/* -------- Avatar -------- */
+.doctor-avatar {
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(214,51,108,0.08), rgba(232,92,136,0.04));
+  border: 2px solid rgba(214,51,108,0.1);
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 1rem;
+}
+
+/* -------- Info -------- */
+.doctor-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.doctor-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 0.25rem;
+}
+
+.doctor-clinic {
+  font-size: 0.92rem;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.doctor-meta {
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+
+/* -------- Actions -------- */
+.doctor-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+  white-space: nowrap;
+  margin-left: auto;
+  flex: 0 0 auto; /* don't let actions shrink strangely */
+}
+
+.phone-pill {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: #f8f9fb;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #111;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.phone-pill:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.small-link {
+  font-size: 0.86rem;
+  color: var(--muted);
+  text-decoration: none;
+}
+.small-link:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+/* -------- Note card -------- */
+.note-card {
+  margin-top: 1rem;
+  padding: 0.9rem;
+  background: #fff3f8;
+  border-left: 6px solid var(--accent);
+  border-radius: var(--radius);
+  color: #444;
+  font-size: 0.95rem;
+}
+
+/* -------- Responsive tweaks -------- */
+@media (max-width: 600px) {
+  .doctor-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .doctor-actions {
+    flex-direction: row;
+    margin-top: 0.5rem;
+    gap: 1rem;
+  }
+  .doctor-clinic { white-space: normal; }
+}
+
+/* extra tweak: for medium screens, encourage two-column layout by lowering base width */
+@media (max-width: 900px) and (min-width: 601px) {
+  .doctor-card { flex: 1 1 45%; min-width: 260px; }
+}
+
+/* extra tweak: for very wide screens allow 3 columns naturally */
+@media (min-width: 1200px) {
+  .doctor-card { flex: 1 1 300px; }
+}

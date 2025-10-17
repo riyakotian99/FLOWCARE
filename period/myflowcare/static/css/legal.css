@@ -1,0 +1,141 @@
+/* static/css/legal.css
+   Styles for Privacy Policy, Terms of Service, and Disclaimer pages
+   Gentle, readable, lavender-themed background
+*/
+
+/* --- Base typography & container --- */
+.legal-container,
+.container.legal {
+  max-width: 880px;
+  margin: 1.5rem auto;
+  padding: 1.75rem;
+  background: #f3e8ff; /* lavender background */
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(20, 24, 40, 0.06);
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  color: #2c2a3e; /* dark lavender text */
+  line-height: 1.65;
+}
+
+/* Headings */
+.legal-container h2,
+.container h2 {
+  font-size: 1.9rem;
+  margin-bottom: 0.6rem;
+  color: #3d2c5d; /* deep lavender heading */
+  letter-spacing: -0.2px;
+}
+
+.legal-container h4 {
+  font-size: 1.05rem;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #5c4a82;
+  font-weight: 600;
+}
+
+/* Last updated line */
+.legal-container p strong,
+.legal-meta {
+  color: #7a6fa1; /* muted lavender */
+  font-weight: 600;
+}
+
+/* Paragraphs */
+.legal-container p {
+  margin-bottom: 0.9rem;
+  font-size: 0.98rem;
+  color: #382e4f;
+}
+
+/* Lists */
+.legal-container ul {
+  margin-left: 1.05rem;
+  margin-bottom: 0.9rem;
+  padding-left: 1rem;
+}
+.legal-container ul li {
+  margin: 0.45rem 0;
+  font-size: 0.98rem;
+  color: #3f3355;
+}
+
+/* Links in lavender */
+.legal-container a {
+  color: #6a0dad; /* rich lavender accent */
+  text-decoration: none;
+  border-bottom: 1px solid rgba(106, 13, 173, 0.25);
+  padding-bottom: 1px;
+}
+.legal-container a:hover {
+  text-decoration: underline;
+  border-bottom-color: rgba(106, 13, 173, 0.45);
+}
+
+/* Accent block for important notices */
+.legal-note {
+  background: linear-gradient(180deg, rgba(138, 43, 226, 0.15), rgba(138, 43, 226, 0.05));
+  border-left: 4px solid rgba(138, 43, 226, 0.4);
+  padding: 0.9rem 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  color: #2e2044;
+  font-weight: 500;
+}
+
+/* Small print */
+.legal-container .small {
+  font-size: 0.86rem;
+  color: #5b4d73;
+}
+
+/* Footer-ish contact card inside page */
+.legal-contact {
+  margin-top: 1.25rem;
+  padding: 0.9rem 1rem;
+  border-radius: 10px;
+  background: #ede6f7; /* light lavender card */
+  border: 1px solid rgba(106, 13, 173, 0.2);
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.legal-contact p { margin: 0; }
+
+/* Responsive tweaks */
+@media (max-width: 991px) {
+  .legal-container {
+    margin: 1rem;
+    padding: 1.25rem;
+    border-radius: 10px;
+  }
+  .legal-container h2 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .legal-container {
+    padding: 1rem;
+  }
+  .legal-container h2 {
+    font-size: 1.3rem;
+  }
+  .legal-container h4 {
+    font-size: 1rem;
+  }
+}
+
+/* Accessibility focus for keyboard users */
+.legal-container a:focus,
+.legal-container button:focus {
+  outline: 3px solid rgba(106, 13, 173, 0.3);
+  outline-offset: 3px;
+}
+
+/* Optional: print-friendly */
+@media print {
+  body * { visibility: visible; }
+  .nav-pill, .site-footer, .messages-container { display: none !important; }
+  .legal-container { box-shadow: none; border: none; margin: 0; padding: 0; }
+}

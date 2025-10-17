@@ -1,0 +1,123 @@
+/* === General Page Styles === */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.75;
+    color: #333;
+    background: #f9f9f9; /* subtle off-white */
+    margin: 0;
+    padding: 0;
+}
+
+/* === Section Styles === */
+.section {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px 35px;
+    border-radius: 12px;
+    background: linear-gradient(to bottom, #fff, #fcfcfc); /* soft gradient */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.section:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* === Header Styles === */
+.section header h1 {
+    text-align: center;
+    font-size: 2.6em;
+    margin-bottom: 25px;
+    color: #d6336c;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.section header h1:hover {
+    color: #e85c88; /* subtle color change on hover */
+}
+
+/* === Subheadings === */
+.section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #444;
+    border-left: 5px solid #d6336c;
+    padding-left: 12px;
+    transition: color 0.3s ease;
+}
+
+.section h2:hover {
+    color: #e85c88;
+}
+
+/* === Paragraph Styles === */
+.section p {
+    font-size: 1.08em;
+    line-height: 1.85;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+/* === Image Styles === */
+.section img {
+    display: block;
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    margin: 20px auto;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.section img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* === Alternate left/right image layout === */
+.section:nth-child(even) img {
+    float: left;
+    margin-right: 20px;
+}
+
+.section:nth-child(odd) img {
+    float: right;
+    margin-left: 20px;
+}
+
+/* Clear floats after each section */
+.section::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* === Responsive Adjustments === */
+@media (max-width: 992px) {
+    .section {
+        padding: 25px 20px;
+    }
+
+    .section img {
+        float: none;
+        margin: 20px auto;
+        max-width: 95%;
+    }
+}
+
+@media (max-width: 768px) {
+    .section h2 {
+        font-size: 1.7em;
+    }
+
+    .section header h1 {
+        font-size: 2.2em;
+    }
+
+    .section p {
+        font-size: 1.05em;
+    }
+} 

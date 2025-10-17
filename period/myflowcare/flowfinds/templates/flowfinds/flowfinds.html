@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'flowfinds/flowfinds.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-flowfinds">
+  <div class="flowfinds-hero">
+    <h1><strong> — Period Essentials </strong></h1>
+    <p>Pads, tampons, cups, discs & more — everything you need in one place</p>
+  </div>
+
+  {% include "flowfinds/product_list.html" %}
+</div>
+{% endblock %}

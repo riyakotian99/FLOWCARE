@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/aboutus.css' %}">
+
+<section class="about-us">
+  <h1>About FlowCare</h1>
+
+  <p>
+    Periods are a natural part of life — but for many, they still come with uncertainty, discomfort, and unanswered questions. At FlowCare, we believe that every person deserves to understand their body, track their health with ease, and feel supported through every cycle.
+  </p>
+
+  <p>
+    FlowCare started with a simple idea: what if menstrual health could be managed in one safe, reliable, and friendly space? We wanted to create more than just a tracker — we wanted to build a companion. A platform that helps you not only know when your period is coming, but also prepares you with tips, remedies, and emotional support along the way.
+  </p>
+
+  <!-- First Image Row -->
+  <div class="image-container">
+    <img src="{% static 'images/girl.jpg' %}" alt="Girl illustration riding pad">
+    <img src="{% static 'images/girle.jpg' %}" alt="Empowered girl with menstrual items">
+  </div>
+
+  <h2>Our Features</h2>
+  <ul>
+    <li>Period & Symptom Tracker – so you can predict your cycle and understand your body better.</li>
+    <li>Mood Journal – to connect the dots between your emotions and your cycle.</li>
+    <li>Diet Recommendations & Home Remedies – to make those tough days a little easier.</li>
+    <li>Anonymous Confession Wall – a judgment-free space where you can share your thoughts and experiences.</li>
+    <li>Local Help Map – so help is never far when you need it most.</li>
+    <li>Educational Hub – packed with articles, infographics, and guides to empower you with knowledge.</li>
+  </ul>
+
+  <p>
+    We know that periods are not the same for everyone — and that’s why FlowCare adapts to you. Whether you’re tracking your first period, managing irregular cycles, or simply looking for self-care tips, we’ve got you covered.
+  </p>
+
+  <p class="mission">
+    <strong>Our mission is simple:</strong> to break the stigma, provide knowledge, and make menstrual health a priority — without shame, without secrecy.
+  </p>
+
+  <div class="image-container">
+    <img src="{% static 'images/sleep.jpg' %}" alt="Cycle tracking calendar">
+  </div>
+
+  <p class="closing">
+    FlowCare is here for you, every day of the month.<br>
+    Because your cycle matters.<br>
+    Your comfort matters.<br>
+    You matter.
+  </p>
+</section>
+{% endblock %}

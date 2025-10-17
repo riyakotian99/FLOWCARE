@@ -1,0 +1,182 @@
+/* ==== Reset & Base ==== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fff;
+  color: #4a2c40;
+  line-height: 1.7;
+}
+
+/* ==== Header ==== */
+header {
+  background-color: #f9c8dc;
+  padding: 30px 0 15px;
+  text-align: center;
+  border-bottom: 2px solid #f3a7cb;
+}
+
+header h1 {
+  color: #7a2e63;
+  font-weight: 800;
+  font-size: 2.2rem;
+  text-shadow: 0 2px 5px rgba(122, 46, 99, 0.3);
+}
+
+/* ==== Navigation Bar ==== */
+nav {
+  background-color: #f7c5db;
+  padding: 14px 0;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin: 0;
+}
+
+nav ul li a {
+  color: #7a2e63;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+  background-color: #f3a7cb;
+  color: #fff;
+}
+
+/* ==== About Us Section ==== */
+section.about-us {
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 50px 40px;
+  background: linear-gradient(135deg, #fce9f1 0%, #f7d7e9 100%);
+  border-radius: 20px;
+  box-shadow: 0 12px 35px rgba(168, 80, 130, 0.2);
+  border: 1px solid #d39ec1;
+}
+
+.about-us h1 {
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: #84286c;
+  margin-bottom: 24px;
+  text-align: center;
+  text-shadow: 0 2px 6px rgba(132, 40, 108, 0.4);
+}
+
+.about-us h2 {
+  font-size: 1.8rem;
+  color: #a64f92;
+  margin: 40px 0 20px;
+  text-shadow: 0 1px 3px rgba(166, 79, 146, 0.3);
+  text-align: center;
+}
+
+.about-us p {
+  font-size: 1.15rem;
+  color: #5a3a57;
+  max-width: 800px;
+  margin: 20px auto;
+  text-align: justify;
+}
+
+/* ==== Special Paragraphs ==== */
+.about-us p.mission {
+  font-style: italic;
+  color: #7a3e7f;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 30px auto;
+  text-align: center;
+}
+
+.about-us p.closing {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #8e3f8f;
+  letter-spacing: 0.02em;
+  text-align: center;
+  margin-top: 50px;
+}
+
+/* ==== List Styling ==== */
+.about-us ul {
+  list-style: disc inside;
+  padding: 0;
+  max-width: 750px;
+  margin: 0 auto 30px;
+  color: #7e3f6d;
+  font-weight: 600;
+  text-align: left;
+}
+
+.about-us ul li {
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* ==== Image Styling ==== */
+.image-container {
+  display: flex;
+  justify-content: center;
+  margin: 40px auto 30px;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.image-container img {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(168, 80, 130, 0.25);
+  transition: transform 0.3s ease;
+}
+
+.image-container img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 40px rgba(168, 80, 130, 0.35);
+}
+
+/* ==== Responsive ==== */
+@media (max-width: 768px) {
+  .about-us {
+    padding: 30px 20px;
+  }
+
+  .about-us h1 {
+    font-size: 2.1rem;
+  }
+
+  .about-us h2 {
+    font-size: 1.4rem;
+  }
+
+  .about-us p,
+  .about-us ul li {
+    font-size: 1rem;
+  }
+
+  .image-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .image-container img {
+    max-width: 90%;
+  }
+}

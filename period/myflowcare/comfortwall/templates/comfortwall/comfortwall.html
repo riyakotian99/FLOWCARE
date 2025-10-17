@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+  <!-- Temporary shim: redirect user to the wall list -->
+  <script>window.location.href = "{% url 'comfortwall:list' %}";</script>
+  <p>If you are not redirected, <a href="{% url 'comfortwall:list' %}">open the ComfortWall</a>.</p>
+{% endblock %}

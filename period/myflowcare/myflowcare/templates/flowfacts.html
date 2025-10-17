@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/flowfacts.css' %}">
+
+<section class="educational-hub">
+  <h1><strong>FlowFacts</strong></h1>
+  <h4>Knowledge hub</h4>
+  <p class="intro">
+    Learn more about your menstrual health through easy guides, helpful articles, and engaging visuals.
+  </p>
+
+  <div class="cards-container">
+    <!-- First Period Guide Card -->
+    <div class="edu-card">
+      <img src="{% static 'images/firstperiod.png' %}" alt="First Period Guide">
+      <h2><strong>My First Period Guide</strong></h2>
+      <p>Everything you need to know about your first period, explained in simple and reassuring terms.</p>
+      <a href="{% url 'flowapp:firstperiodguide' %}">Read guide →</a>
+    </div>
+
+    <!-- Articles Card -->
+    <div class="edu-card">
+      <img src="{% static 'images/article.jpg' %}" alt="Educational Articles">
+      <h2><strong>Articles</strong></h2>
+      <p>In-depth reads on menstrual health, hormonal changes, and overall well-being.</p>
+      <a href="{% url 'flowapp:articles' %}">Browse articles →</a>
+    </div>
+
+    <!-- Infographics Card -->
+    <div class="edu-card">
+      <img src="{% static 'images/pic.jpg' %}" alt="Infographics">
+      <h2><strong>Infographics </strong></h2>
+      <p>Visual guides that make understanding your cycle easy and engaging.</p>
+      <a href="{% url 'flowapp:infographics' %}">View infographics →</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

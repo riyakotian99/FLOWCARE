@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FlowCare</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <!-- styles -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cyclemate.css' %}">
+    <link rel="stylesheet" href="{% static 'flowfinds/flowfinds.css' %}">
+    <link rel="stylesheet" href="{% static 'css/legal.css' %}">
+    
+    <!-- Bootstrap (optional but recommended for Bootstrap classes used in templates) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- ComfortWall CSS -->
+    <link rel="stylesheet" href="{% static 'comfortwall/css/comfortwall.css' %}">
+
+    <!-- allow child templates to inject head content -->
+    {% block head %}{% endblock %}
+</head>
+<body>
+
+<!-- 🔔 Messages block -->
+{% if messages %}
+  <div class="messages-container">
+    {% for message in messages %}
+      <div class="message-item {{ message.tags }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+<header>
+    <h1>FlowCare - "Your Cycle, Your Flow"</h1>
+</header>
+
+<!-- ===== Navigation with Video Background ===== -->
+
+<nav class="nav-pill">
+  <div class="nav-bg-wrapper">
+    <img src="{% static 'images/flowcare-logo.jpg' %}" alt="FlowCare Banner" class="nav-bg">
+    <ul>
+      {% if user.is_authenticated %}
+        <!-- Links when logged in -->
+        <li><a href="{% url 'flowapp:home' %}">Home</a></li>
+        <li><a href="{% url 'flowapp:aboutus' %}">About Us</a></li>
+        <li><a href="{% url 'flowapp:cyclemate' %}">CycleMate</a></li>
+        <li><a href="{% url 'flowapp:comfortwall' %}">ComfortWall</a></li>
+        <li><a href="{% url 'flowapp:helpmap' %}">HelpMap</a></li>
+        <li><a href="{% url 'flowapp:flowfacts' %}">FlowFacts</a></li>
+        <li><a href="{% url 'flowapp:flowfinds' %}">FlowFinds</a></li>
+        
+        <!-- 🔴 Logout styled like link -->
+        <li>
+          <form action="{% url 'flowapp:logout' %}" method="post" class="logout-form">
+            {% csrf_token %}
+            <button type="submit" class="nav-link-btn">Logout</button>
+          </form>
+        </li>
+      {% else %}
+        <!-- Links when logged out -->
+        <li><a href="{% url 'flowapp:login' %}">Login</a></li>
+        <li><a href="{% url 'flowapp:register' %}">Register</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</nav> 
+
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+
+<!-- ===== Footer ===== -->
+<footer class="site-footer">
+  <div class="footer-container">
+    <!-- Contact Info -->
+    <div class="footer-section contact">
+      <h4>Contact Us</h4>
+      <p>Email: <a href="mailto:support@flowcare.com">support@flowcare.com</a></p>
+      <p>Phone: +91-98765-43210</p>
+      <p>Address: Mumbai, India</p>
+    </div>
+
+    <!-- Legal Info -->
+    <div class="footer-section legal">
+      <h4>Legal</h4>
+      <ul>
+         <li><a href="{% url 'flowapp:privacy_policy' %}">Privacy Policy</a></li>
+         <li><a href="{% url 'flowapp:terms_of_service' %}">Terms of Service</a></li>
+         <li><a href="{% url 'flowapp:disclaimer' %}">Disclaimer</a></li>
+      </ul>
+    </div>
+
+    <!-- Social Media -->
+    <div class="footer-section social">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="#" aria-label="Instagram">📸</a>
+        <a href="#" aria-label="Twitter">🐦</a>
+        <a href="#" aria-label="Facebook">📘</a>
+        <a href="#" aria-label="YouTube">▶️</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🔙 Back Button -->
+  <div class="back-button" style="margin-top:1rem;">
+    <a href="javascript:history.back()" class="btn-back">← Back</a>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 FlowCare — Your Cycle, Your Flow. All Rights Reserved.</p>
+    <p class="small">Made with 💖 to support women everywhere</p>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+{% block scripts %}{% endblock %}
+
+</body>
+</html>

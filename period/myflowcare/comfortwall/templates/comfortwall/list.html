@@ -1,0 +1,229 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'comfortwall/css/comfortwall.css' %}">
+{% endblock %}
+
+{% block content %}
+  {% include "comfortwall/_resource_banner.html" %}
+
+  {# -------------------- Report modal (hidden by default) -------------------- #}
+  <div id="report-modal" class="report-modal" aria-hidden="true" role="dialog" aria-modal="true" style="display:none;">
+    <div class="report-modal__backdrop" data-close="true"></div>
+
+    <div class="report-modal__panel" role="document" aria-labelledby="report-modal-title">
+      <h3 id="report-modal-title">Report post</h3>
+
+      <form id="report-form" method="post" action="{% url 'comfortwall:report' %}">
+        {% csrf_token %}
+        <input type="hidden" name="post_id" id="report-post-id" value="">
+        <div class="report-options" style="margin-top:.5rem;">
+          <label><input type="radio" name="reason" value="vulgar" checked> Contains vulgar/explicit content</label>
+          <label><input type="radio" name="reason" value="personal_info"> Includes personal or identifying info</label>
+          <label><input type="radio" name="reason" value="spam"> Spam / advertising</label>
+          <label><input type="radio" name="reason" value="harassment"> Harassment / hateful content</label>
+          <label><input type="radio" name="reason" value="other"> Other (explain)</label>
+        </div>
+
+        <div id="report-other-wrap" style="display:none; margin-top:.5rem;">
+          <label for="report-other">Please explain (optional):</label><br>
+          <textarea id="report-other" name="other_text" rows="3" style="width:100%;"></textarea>
+        </div>
+
+        <div style="margin-top:.75rem; display:flex; gap:.5rem; justify-content:flex-end;">
+          <button type="button" class="btn btn-secondary" data-close="true">Cancel</button>
+          <button type="submit" class="btn btn-danger" id="report-submit">Send report</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  {# ------------------------------------------------------------------------- #}
+
+
+  {% if posts %}
+    {% for post in posts %}
+      <div class="card mb-3">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div>
+              <strong>{{ post.anon_name }}</strong>
+              <small class="text-muted"> — {{ post.created_at|date:"M d, Y H:i" }}</small>
+            </div>
+            {% if post.mood %}
+              <span class="badge bg-secondary">{{ post.mood }}</span>
+            {% endif %}
+          </div>
+
+          <p class="mt-2">{{ post.content|linebreaksbr }}</p>
+
+          <div class="d-flex gap-2 mt-2">
+            <!-- ❤️ Like button -->
+            <form action="{% url 'comfortwall:like' post.id %}" method="post" style="display:inline;">
+              {% csrf_token %}
+              <button class="btn btn-sm btn-outline-primary">
+                ❤️ Like ({{ post.likes_count }})
+              </button>
+            </form>
+
+            <!-- 🚩 Report button (JS-enabled: opens modal) -->
+            <button type="button"
+                    class="btn btn-sm btn-outline-danger report-open-btn"
+                    data-post-id="{{ post.id }}"
+                    aria-haspopup="dialog"
+                    aria-controls="report-modal">
+              Report
+            </button>
+
+            <!-- Fallback for users with JS disabled: posts to same /report/ endpoint -->
+            <noscript>
+              <form action="{% url 'comfortwall:report' %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <input type="hidden" name="post_id" value="{{ post.id }}">
+                <button class="btn btn-sm btn-outline-danger">Report</button>
+              </form>
+            </noscript>
+
+            <!-- ❌ Delete button (only if user owns post) -->
+            {% if request.session.comfort_delete_token and request.session.comfort_delete_token == post.delete_token %}
+              <form action="{% url 'comfortwall:delete' post.id %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button class="btn btn-sm btn-outline-secondary">Delete</button>
+              </form>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+
+    <!-- pagination -->
+    <nav>
+      <ul class="pagination">
+        {% if posts.has_previous %}
+          <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">Previous</a></li>
+        {% endif %}
+        <li class="page-item disabled">
+          <span class="page-link">Page {{ posts.number }} of {{ posts.paginator.num_pages }}</span>
+        </li>
+        {% if posts.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">Next</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  {% else %}
+    <p>No posts yet. Be the first to share something.</p>
+  {% endif %}
+
+  {# -------------------- JS: modal behavior + AJAX submit -------------------- #}
+  <script>
+  (function () {
+    // helper to read cookie (Django CSRF)
+    function getCookie(name) {
+      const v = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+      return v ? v.pop() : '';
+    }
+
+    // try to find a CSRF token present on the page (from any form)
+    const tokenInput = document.querySelector('input[name="csrfmiddlewaretoken"]');
+    const csrfToken = tokenInput ? tokenInput.value : getCookie('csrftoken');
+
+    const modal = document.getElementById('report-modal');
+    const reportForm = document.getElementById('report-form');
+    const postIdInput = document.getElementById('report-post-id');
+    const otherWrap = document.getElementById('report-other-wrap');
+    const otherInput = document.getElementById('report-other');
+
+    // open modal when clicking any report button
+    document.querySelectorAll('.report-open-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const pid = btn.getAttribute('data-post-id');
+        postIdInput.value = pid;
+        openModal();
+      });
+    });
+
+    function openModal() {
+      modal.style.display = 'block';
+      modal.setAttribute('aria-hidden', 'false');
+      // focus first radio
+      const firstRadio = modal.querySelector('input[type="radio"]');
+      if (firstRadio) firstRadio.focus();
+    }
+    function closeModal() {
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+      reportForm.reset();
+      otherWrap.style.display = 'none';
+      otherInput.value = '';
+    }
+
+    // backdrop/cancel close
+    modal?.addEventListener('click', (e) => {
+      if (e.target.matches('[data-close="true"]')) closeModal();
+    });
+
+    // show/hide "other" textarea
+    modal?.querySelectorAll('input[name="reason"]').forEach(radio => {
+      radio.addEventListener('change', () => {
+        otherWrap.style.display = (radio.value === 'other' && radio.checked) ? 'block' : 'none';
+      });
+    });
+
+    // AJAX submission
+    reportForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const formData = new FormData(reportForm);
+      const postId = formData.get('post_id');
+      if (!postId) { showToast('error', 'Missing post id.'); return; }
+
+      // action is already the single /report/ endpoint (no UUID in URL)
+      const url = reportForm.getAttribute('action');
+
+      try {
+        const res = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'X-CSRFToken': csrfToken,
+            'Accept': 'application/json'
+          },
+          body: formData
+        });
+
+        // if server returns non-JSON, this will throw; view should return JSON for AJAX
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+          showToast('success', data.message || 'Report submitted — thank you.');
+          closeModal();
+        } else {
+          showToast('error', data.message || 'Could not submit report.');
+        }
+      } catch (err) {
+        console.error(err);
+        showToast('error', 'Network error. Try again.');
+      }
+    });
+
+    // toast helper (reuses your .messages-container + .message-item classes)
+    function showToast(type, text) {
+      let container = document.querySelector('.messages-container');
+      if (!container) {
+        container = document.createElement('div');
+        container.className = 'messages-container';
+        document.body.appendChild(container);
+      }
+
+      const div = document.createElement('div');
+      div.className = 'message-item ' + (type === 'success' ? 'success' : (type === 'info' ? 'info' : (type === 'warning' ? 'warning' : 'error')));
+      div.textContent = text;
+      container.prepend(div);
+
+      setTimeout(() => {
+        div.style.opacity = '0';
+        setTimeout(() => div.remove(), 450);
+      }, 3000);
+    }
+  })();
+  </script>
+  {# ------------------------------------------------------------------------- #}
+{% endblock %}

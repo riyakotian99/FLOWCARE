@@ -1,0 +1,492 @@
+/* ===============================
+   FlowFinds — Enhanced Stylesheet
+   ===============================
+   - Variables for easy theming
+   - Improved accessibility (focus, contrast)
+   - Better responsive rules & image handling
+   - Subtle, optional motion (respects reduced-motion)
+*/
+
+/* --- Variables / theme --- */
+:root{
+  --bg-100: #fff7fb;
+  --bg-200: #ffffff;
+  --accent: #86476d;      /* main accent / nav */
+  --soft-pink: #eba8c2;
+  --muted: #6b6b6b;
+  --card-bg: #ffffff;
+  --shadow: 0 6px 18px rgba(134,71,109,0.08);
+  --shadow-strong: 0 12px 30px rgba(134,71,109,0.12);
+  --radius-lg: 14px;
+  --radius-sm: 8px;
+  --gap: 1rem;
+  --transition: 180ms cubic-bezier(.2,.9,.3,1);
+  --font-sans: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --text: #222;
+  --muted-2: #777;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  :root{ --transition: 0ms; }
+}
+
+/* --- Base --- */
+*{box-sizing:border-box}
+html,body{height:100%}
+body {
+  background: linear-gradient(180deg, var(--bg-100), var(--bg-200));
+  color: var(--text);
+  font-family: var(--font-sans);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
+}
+
+/* Container */
+.container-flowfinds {
+  max-width: 1180px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Hero / page heading */
+.flowfinds-hero {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+.flowfinds-hero h1{
+  margin:0;
+  font-size:1.75rem;
+  color:var(--accent);
+  line-height:1.1;
+  font-weight:700;
+}
+.flowfinds-hero p{
+  margin:0;
+  color:var(--muted);
+  font-size:0.98rem;
+}
+
+/* ===============================
+   Product Grid & Cards
+   =============================== */
+
+.product-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: clamp(0.6rem, 1.2vw, 1rem);
+}
+
+/* Card */
+.ff-card{
+  background:var(--card-bg);
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  transition: transform var(--transition), box-shadow var(--transition);
+  min-height: 280px;
+  border: 1px solid rgba(0,0,0,0.03);
+}
+.ff-card:focus-within,
+.ff-card:hover{
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-strong);
+  outline: none;
+}
+
+/* Image wrapper (smaller images) */
+.ff-card .img-wrap{
+  width:100%;
+  height: 140px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#fff;
+  border-bottom:1px solid rgba(0,0,0,0.04);
+  overflow:hidden;
+  padding:0.5rem;
+}
+.ff-card img{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+  display:block;
+}
+
+/* Card body */
+.ff-card .card-body{
+  padding: 0.9rem 1rem 1.25rem;
+  display:flex;
+  flex-direction:column;
+  gap:0.5rem;
+  flex:1;
+}
+.ff-card .card-title{
+  font-size:1rem;
+  margin:0;
+  font-weight:600;
+  color:var(--text);
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  overflow:hidden;
+}
+.ff-price{
+  font-weight:700;
+  color:var(--accent);
+  font-size:1.05rem;
+}
+
+/* actions / qty */
+.ff-actions{
+  display:flex;
+  gap:0.5rem;
+  align-items:center;
+}
+.qty-input{
+  width:64px;
+  padding: .25rem .4rem;
+  border-radius:7px;
+  border:1px solid rgba(0,0,0,0.08);
+  font-size:0.9rem;
+  background: #fff;
+}
+
+/* Buttons */
+.btn-ff{
+  display:inline-block;
+  border:none;
+  background:var(--accent);
+  color:#fff;
+  padding:.45rem .7rem;
+  border-radius:9px;
+  font-weight:600;
+  cursor:pointer;
+  text-decoration:none;
+  font-size:0.9rem;
+  transition: transform var(--transition), box-shadow var(--transition), opacity var(--transition);
+}
+.btn-ff:hover{ transform: translateY(-2px); box-shadow: 0 10px 20px rgba(134,71,109,0.12); }
+.btn-ff:active{ transform: translateY(0); }
+.btn-ff:focus{ outline: 3px solid rgba(134,71,109,0.12); outline-offset: 2px; }
+
+/* Ghost button */
+.btn-ghost{
+  border:1px solid rgba(0,0,0,0.08);
+  background:transparent;
+  color:var(--text);
+  padding:.35rem .6rem;
+  border-radius:8px;
+  font-size:0.85rem;
+  cursor:pointer;
+}
+.btn-ghost:hover{ background: rgba(0,0,0,0.02); }
+
+/* ===============================
+   Product Detail Page
+   =============================== */
+.product-detail{
+  max-width:980px;
+  margin:1.5rem auto;
+  padding:1rem;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+.product-detail .left img{
+  width:100%;
+  max-height:320px;
+  object-fit:contain;
+  border-radius:12px;
+  background:#fff;
+  box-shadow:var(--shadow);
+}
+.product-detail h2{
+  margin:0 0 .5rem 0;
+  color:var(--accent);
+}
+.product-detail .price{
+  font-weight:800;
+  font-size:1.25rem;
+  color:var(--accent);
+}
+.product-detail .desc{
+  color:var(--muted);
+  margin-top:0.75rem;
+  line-height:1.5;
+}
+.buy-box{
+  background:#fff;
+  padding:1rem;
+  border-radius:12px;
+  box-shadow:var(--shadow);
+  display:flex;
+  flex-direction:column;
+  gap:0.75rem;
+}
+.buy-box label{ font-size:0.9rem; color:#333; }
+
+/* ===============================
+   Cart Page
+   =============================== */
+.cart-list{
+  max-width:900px;
+  margin:1.5rem auto;
+  padding:1rem;
+}
+.cart-item{
+  display:flex;
+  gap:1rem;
+  align-items:center;
+  padding:.8rem;
+  background:#fff;
+  border-radius:12px;
+  box-shadow:var(--shadow);
+  margin-bottom:.8rem;
+}
+.cart-item img{
+  width:80px;
+  height:80px;
+  object-fit:cover;
+  border-radius:8px;
+}
+.cart-item .ci-title{ font-weight:700; color:#222; }
+.cart-item .ci-meta{ color:var(--muted); font-size:0.9rem; }
+
+.cart-summary{
+  background:#fff;
+  padding:1rem;
+  border-radius:12px;
+  box-shadow:var(--shadow);
+  max-width:360px;
+}
+.checkout-btn{
+  display:block;
+  width:100%;
+  text-align:center;
+  background:var(--accent);
+  color:#fff;
+  padding:.65rem;
+  border-radius:10px;
+  font-weight:700;
+  text-decoration:none;
+}
+
+/* ===============================
+   Admin Add Product Form
+   =============================== */
+.admin-form{
+  max-width:720px;
+  margin:1.5rem auto;
+  background:#fff;
+  padding:1rem;
+  border-radius:12px;
+  box-shadow:var(--shadow);
+}
+.admin-form input[type="text"],
+.admin-form input[type="number"],
+.admin-form input[type="file"],
+.admin-form textarea,
+.admin-form select{
+  width:100%;
+  padding:.55rem;
+  border-radius:8px;
+  border:1px solid rgba(0,0,0,0.08);
+  margin-bottom:.6rem;
+  font-size:0.95rem;
+  background: #fff;
+}
+
+/* ===============================
+   Helpers & Responsive
+   =============================== */
+.muted{ color:var(--muted); font-size:0.9rem; }
+.center{ text-align:center; }
+
+/* utilities */
+.hidden { display: none !important; }
+.flex { display:flex; }
+.flex-column { display:flex; flex-direction:column; }
+.gap-xs { gap: .4rem; }
+.gap-sm { gap: .75rem; }
+
+/* table-like small lists */
+.list-compact { display:flex; flex-direction:column; gap: .4rem; }
+
+/* responsive tweaks */
+@media (max-width: 900px){
+  .product-detail{ grid-template-columns: 1fr; padding:.75rem; }
+  .flowfinds-hero{ flex-direction:column; align-items:flex-start; gap:.5rem; }
+  .ff-card .img-wrap{ height: 120px; }
+}
+
+@media (max-width: 480px){
+  .ff-card .img-wrap{ height: 100px; }
+  .container-flowfinds{ padding: 0 .6rem; }
+  .product-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+  .ff-price { font-size: 1rem; }
+}
+
+/* Accessibility: focus-visible (keyboard) */
+:focus-visible { outline: 3px solid rgba(134,71,109,0.12); outline-offset: 3px; border-radius: 6px; }
+
+/* Small polish */
+.ff-card .card-body .card-title { display:block; max-width:100%; }
+.ff-card .card-body .card-meta { color:var(--muted-2); font-size:0.9rem; }
+
+/* ============================
+   Checkout address (FlowFinds)
+   ============================ */
+
+.checkout-address {
+  background: linear-gradient(180deg, rgba(235,168,194,0.12), rgba(255,255,255,0.03));
+  padding: 1.25rem 1.25rem 2.25rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  margin: 1.25rem 0;
+}
+
+/* Page heading */
+.checkout-address .flowfinds-hero {
+  padding: 0;
+  margin-bottom: 1rem;
+}
+.checkout-address h1 {
+  font-size: 2rem;
+  margin: 0 0 0.75rem 0;
+  color: var(--accent);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+/* Form layout: two-column label / input */
+.checkout-form {
+  display: grid;
+  grid-template-columns: 220px 1fr; /* label column and input column */
+  gap: 0.6rem 1.2rem;                /* row-gap col-gap */
+  align-items: start;
+  width: 100%;
+}
+
+/* Each field row */
+.checkout-form .form-row {
+  display: contents; /* uses the grid rows via children */
+}
+
+/* Labels */
+.checkout-form label {
+  display: block;
+  padding-top: 0.4rem;
+  color: #2f2430; /* slightly darker for readability */
+  font-weight: 600;
+  font-size: 0.98rem;
+}
+
+/* Inputs + textarea container */
+.checkout-form .input-cell {
+  display: block;
+}
+
+/* Inputs */
+.checkout-form input[type="text"],
+.checkout-form input[type="number"],
+.checkout-form input[type="tel"],
+.checkout-form textarea,
+.checkout-form select {
+  width: 100%;
+  padding: 0.45rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: #fff;
+  font-size: 0.95rem;
+  box-shadow: none;
+  box-sizing: border-box;
+  transition: box-shadow var(--transition), border-color var(--transition);
+}
+
+/* textarea sizing */
+.checkout-form textarea {
+  min-height: 90px;
+  resize: vertical;
+  padding-top: 0.55rem;
+}
+
+/* input focus */
+.checkout-form input:focus,
+.checkout-form textarea:focus,
+.checkout-form select:focus {
+  outline: none;
+  border-color: rgba(134,71,109,0.3);
+  box-shadow: 0 6px 18px rgba(134,71,109,0.05);
+}
+
+/* Payment note line spanning full width */
+.checkout-address .payment-note {
+  grid-column: 1 / -1;
+  margin-top: 0.6rem;
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
+/* Button row spans full width and aligns left */
+.checkout-address .form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.9rem;
+  align-items: center;
+}
+
+/* Reuse existing btn-ff and btn-ghost styles but ensure good padding */
+.checkout-address .btn-ff {
+  padding: 0.55rem 1.1rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  box-shadow: 0 8px 18px rgba(134,71,109,0.08);
+}
+.checkout-address .btn-ghost {
+  padding: 0.45rem 0.9rem;
+  border-radius: 12px;
+}
+
+/* Muted helper text and spacing */
+.checkout-address .muted {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+/* Small screens: stack labels above inputs */
+@media (max-width: 780px) {
+  .checkout-form {
+    grid-template-columns: 1fr;
+  }
+  .checkout-form label {
+    padding-top: 0;
+  }
+  .checkout-address .form-actions {
+    justify-content: flex-start;
+  }
+  .checkout-address h1 { font-size: 1.6rem; }
+}
+
+/* Accessibility: improve focus-visible look */
+.checkout-form input:focus-visible,
+.checkout-form textarea:focus-visible {
+  outline: 3px solid rgba(134,71,109,0.12);
+  outline-offset: 3px;
+}
+
+/* Error message styling (optional if you display form errors) */
+.field-error {
+  color: #a53939;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  grid-column: 2 / 3;
+}

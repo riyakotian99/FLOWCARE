@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Orders (staff)</h2>
+<table>
+  <tr><th>Order ID</th><th>User</th><th>Total</th><th>Status</th><th>Created</th><th>Actions</th></tr>
+  {% for o in orders %}
+  <tr>
+    <td>{{ o.id }}</td>
+    <td>{{ o.user_id }}</td>
+    <td>₹{{ o.total }}</td>
+    <td>{{ o.status }}</td>
+    <td>{{ o.created_at }}</td>
+    <td><a href="{% url 'flowfinds:admin_order_detail' order_id=o.id %}">View</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

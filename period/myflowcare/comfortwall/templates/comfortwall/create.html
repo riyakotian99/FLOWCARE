@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'comfortwall/css/comfortwall.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Inline styles (for testing, can move to comfortwall.css later) -->
+<style>
+.share-box {
+  background: #fff0f6 !important;
+  border: 2px solid #f8c0d0 !important;
+  border-radius: 12px !important;
+  padding: 1.25rem !important;
+  margin-bottom: 1.25rem !important;
+  box-shadow: 0 8px 20px rgba(248,90,143,0.08) !important;
+}
+.share-box h3 { color:#b01750; font-size:1.4rem; font-weight:800; margin-bottom:.8rem; }
+.share-box textarea, .share-box select {
+  width:100% !important;
+  padding:.7rem .85rem !important;
+  border-radius:8px !important;
+  border:1px solid #f0c9d3 !important;
+  background:#fff !important;
+  margin-bottom:.8rem !important;
+  font-size:.95rem !important;
+}
+.share-box .btn-primary {
+  background: linear-gradient(135deg,#f85a8f,#d6336c) !important;
+  border:none !important;
+  font-weight:700 !important;
+  border-radius:8px !important;
+  padding:.55rem .95rem !important;
+  color:#fff !important;
+}
+
+.guidelines-box {
+  background:#fff7fb !important;
+  border:1px solid #f4c9d9 !important;
+  border-radius:12px !important;
+  padding:1rem !important;
+  box-shadow: 0 6px 16px rgba(248,90,143,0.04) !important;
+}
+.guidelines-box h5 { color:#b01750; font-weight:800; margin-bottom:.6rem; }
+
+@media (max-width: 768px) {
+  .share-box, .guidelines-box { width:100% !important; }
+}
+</style>
+
+{% include "comfortwall/_resource_banner.html" %}
+
+<div class="row" style="gap:1.5rem;">
+  <!-- 🔹 Community guidelines now on the LEFT -->
+  <div class="col-md-4">
+    <div class="guidelines-box">
+      <h5>Community guidelines</h5>
+      <ul>
+        <li>Be kind — this is a safe space.</li>
+        <li>Don’t post personal identifying details.</li>
+        <li>No hate speech or illegal content.</li>
+        <li>If you are in crisis, please use the resources above.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 🔹 Share anonymously now on the RIGHT -->
+  <div class="col-md-8">
+    <div class="share-box">
+      <h3>Share anonymously</h3>
+      <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <div class="mb-3">
+          {{ form.content.label_tag }}
+          {{ form.content }}
+          {% for err in form.content.errors %}
+            <div class="text-danger small">{{ err }}</div>
+          {% endfor %}
+        </div>
+
+        <div class="mb-3">
+          {{ form.mood.label_tag }}
+          {{ form.mood }}
+          {% for err in form.mood.errors %}
+            <div class="text-danger small">{{ err }}</div>
+          {% endfor %}
+        </div>
+
+        <div class="mb-3 form-check">
+          {{ form.consent }}
+          {{ form.consent.label_tag }}
+          {% for err in form.consent.errors %}
+            <div class="text-danger small">{{ err }}</div>
+          {% endfor %}
+        </div>
+
+        <div style="display:flex; gap:.6rem;">
+          <button class="btn btn-primary" type="submit">Submit</button>
+          <a href="{% url 'comfortwall:list' %}" class="btn btn-link">Back</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

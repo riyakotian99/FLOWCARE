@@ -1,0 +1,164 @@
+/* General Page Styling */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #eba8c2;
+  color: #333;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== NAV BAR ===== */
+nav {
+  background: #86476d; /* soft pink */
+  padding: 1rem 2rem;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;              /* makes it horizontal */
+  justify-content: center;    /* centers the items */
+  gap: 2rem;                  /* spacing between items */
+}
+
+nav ul li {
+  display: inline;
+}
+
+nav ul li a {
+  text-decoration: none;
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 500;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  padding-bottom: 2px;
+}
+
+nav ul li a:hover {
+  color: #333;
+  border-bottom: 2px solid #fff;
+}
+
+/* ===== Hero Section ===== */
+.hero-image img {
+  width: 97%;
+  height: auto;
+  object-fit: cover;
+  border-bottom: 4px solid #f28ba0;
+}
+
+/* Section Titles */
+.section {
+  padding: 3rem 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.section h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #8b458b;
+  border-bottom: 2px solid #f28ba0;
+  display: inline-block;
+  padding-bottom: 0.3rem;
+}
+
+/* Cards Layout */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #444;
+}
+
+.card p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+/* Bulleted Tips */
+.bullets {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.bullets li {
+  background: #f9f3f5;
+  margin: 0.5rem 0;
+  padding: 0.8rem 1rem;
+  border-left: 5px solid #f28ba0;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+/* Pro Tip Box */
+.pro-tip {
+  background: #fceeff;
+  border-left: 6px solid #d94f70;
+  padding: 1.2rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+
+.pro-tip h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  color: #d94f70;
+}
+
+.pro-tip p {
+  margin: 0;
+  color: #444;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .section {
+    padding: 2rem 1rem;
+  }
+
+  .section h2 {
+    font-size: 1.5rem;
+  }
+
+  .card img {
+    height: 150px;
+  }
+
+  nav ul {
+    flex-direction: column;   /* stacks nav items on mobile */
+    gap: 1rem;
+    align-items: center;
+  }
+} 

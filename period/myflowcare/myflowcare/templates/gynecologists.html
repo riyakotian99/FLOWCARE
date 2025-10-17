@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/gynecologists.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2 class="page-title">Gynecologists & Consultants</h2>
+  <p class="lead">Quick-call contacts for nearby gynecologists and clinics. Tap the number to call.</p>
+
+  <div class="cards-grid">
+    <!-- Card 1 -->
+    <div class="doctor-card">
+      <div class="doctor-avatar">AP</div>
+      <div class="doctor-info">
+        <div class="doctor-name">Dr. Asha Patil</div>
+        <div class="doctor-clinic">Sunrise Women's Clinic — Mumbai</div>
+        <div class="doctor-meta small-link">Mon–Sat • 10:00–17:00</div>
+      </div>
+      <div class="doctor-actions">
+        <a class="phone-pill" href="tel:+919876543210">+91 98765 43210</a>
+        <a class="small-link" href="mailto:asha@example.com">asha@example.com</a>
+        <a class="btn btn-sm btn-primary" href="{% url 'flowapp:book' 'asha-patil' %}">Book Appointment</a>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="doctor-card">
+      <div class="doctor-avatar">NK</div>
+      <div class="doctor-info">
+        <div class="doctor-name">Dr. Neha Kapoor</div>
+        <div class="doctor-clinic">Bloom Gynae Centre — Delhi</div>
+        <div class="doctor-meta small-link">By appointment only</div>
+      </div>
+      <div class="doctor-actions">
+        <a class="phone-pill" href="tel:+919123456789">+91 91234 56789</a>
+        <a class="small-link" href="mailto:neha@example.com">neha@example.com</a>
+        <a class="btn btn-sm btn-primary" href="{% url 'flowapp:book' 'neha-kapoor' %}">Book Appointment</a>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="doctor-card">
+      <div class="doctor-avatar">RS</div>
+      <div class="doctor-info">
+        <div class="doctor-name">Dr. Ritu Sharma</div>
+        <div class="doctor-clinic">Lotus Women’s Health — Bengaluru</div>
+        <div class="doctor-meta small-link">Walk-ins welcome • Sun closed</div>
+      </div>
+      <div class="doctor-actions">
+        <a class="phone-pill" href="tel:+919988776655">+91 99887 76655</a>
+        <a class="small-link" href="mailto:ritu@example.com">ritu@example.com</a>
+        <a class="btn btn-sm btn-primary" href="{% url 'flowapp:book' 'ritu-sharma' %}">Book Appointment</a>
+      </div>
+    </div>
+
+    <!-- NEW FAKE NEAR-MUMBAI DOCTORS -->
+
+    <!-- Card 4 -->
+    <div class="doctor-card">
+      <div class="doctor-avatar">SM</div>
+      <div class="doctor-info">
+        <div class="doctor-name">Dr. Shalini Mehta</div>
+        <div class="doctor-clinic">Harmony Women’s Clinic — Thane (West), Mumbai</div>
+        <div class="doctor-meta small-link">Mon–Fri • 09:30–18:30</div>
+      </div>
+      <div class="doctor-actions">
+        <a class="phone-pill" href="tel:+919812345600">+91 98123 45600</a>
+        <a class="small-link" href="mailto:shalini@example.com">shalini@example.com</a>
+        <a class="btn btn-sm btn-primary" href="{% url 'flowapp:book' 'shalini-mehta' %}">Book Appointment</a>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="doctor-card">
+      <div class="doctor-avatar">VK</div>
+      <div class="doctor-info">
+        <div class="doctor-name">Dr. Vibha Kulkarni</div>
+        <div class="doctor-clinic">Wellness Gynae Care — Navi Mumbai (Vashi)</div>
+        <div class="doctor-meta small-link">Tue–Sat • 11:00–19:00</div>
+      </div>
+      <div class="doctor-actions">
+        <a class="phone-pill" href="tel:+919800112233">+91 98001 12233</a>
+        <a class="small-link" href="mailto:vibha@example.com">vibha@example.com</a>
+        <a class="btn btn-sm btn-primary" href="{% url 'flowapp:book' 'vibha-kulkarni' %}">Book Appointment</a>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="doctor-card">
+      <div class="doctor-avatar">AD</div>
+      <div class="doctor-info">
+        <div class="doctor-name">Dr. Anjali Deshmukh</div>
+        <div class="doctor-clinic">CarePoint Women’s Hospital — Dombivli, Mumbai Metropolitan</div>
+        <div class="doctor-meta small-link">Mon–Sat • 10:00–16:00</div>
+      </div>
+      <div class="doctor-actions">
+        <a class="phone-pill" href="tel:+919877654321">+91 98776 54321</a>
+        <a class="small-link" href="mailto:anjali@example.com">anjali@example.com</a>
+        <a class="btn btn-sm btn-primary" href="{% url 'flowapp:book' 'anjali-deshmukh' %}">Book Appointment</a>
+      </div>
+    </div>
+
+    <!-- Card 7 -->
+    <div class="doctor-card">
+      <div class="doctor-avatar">KP</div>
+      <div class="doctor-info">
+        <div class="doctor-name">Dr. Kavita Pawar</div>
+        <div class="doctor-clinic">Shree Sai Maternity Clinic — Kalyan (East), Mumbai Region</div>
+        <div class="doctor-meta small-link">By appointment only</div>
+      </div>
+      <div class="doctor-actions">
+        <a class="phone-pill" href="tel:+919844556677">+91 98445 56677</a>
+        <a class="small-link" href="mailto:kavita@example.com">kavita@example.com</a>
+        <a class="btn btn-sm btn-primary" href="{% url 'flowapp:book' 'kavita-pawar' %}">Book Appointment</a>
+      </div>
+    </div>
+
+    <!-- Card 8 -->
+    <div class="doctor-card">
+      <div class="doctor-avatar">MP</div>
+      <div class="doctor-info">
+        <div class="doctor-name">Dr. Meera Pillai</div>
+        <div class="doctor-clinic">Lotus Bloom Clinic — Panvel, Navi Mumbai</div>
+        <div class="doctor-meta small-link">Mon–Sat • 09:00–14:00</div>
+      </div>
+      <div class="doctor-actions">
+        <a class="phone-pill" href="tel:+919877009988">+91 98770 09988</a>
+        <a class="small-link" href="mailto:meera@example.com">meera@example.com</a>
+        <a class="btn btn-sm btn-primary" href="{% url 'flowapp:book' 'meera-pillai' %}">Book Appointment</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="note-card">
+    <strong>Pro tip:</strong> On mobile the phone number will open the dialer. Keep clinic hours updated for better user experience.
+  </div>
+
+  <div style="margin-top:1rem;">
+    <a href="{% url 'flowapp:home' %}" class="btn btn-outline-secondary btn-sm">← Back to Home</a>
+  </div>
+</div>
+{% endblock %}

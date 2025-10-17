@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/infographics.css' %}">
+
+<!-- Hero Section -->
+<div class="hero-image">
+    <img src="{% static 'images/gots.jpg' %}" alt="Infographics about menstrual hygiene">
+</div>
+
+<!-- Section 1: How to Use a Pad -->
+<div class="section">
+        <h2><strong>How to Use a Pad</strong> </h2>
+    <img src="{% static 'images/pad.webp' %}" alt="How to use a pad infographic">
+</div>
+<!-- Section 1.2: How to Dispose a Pad -->
+<div class="section">
+        <h2><strong> How to Dispose a Pad</strong> </h2>
+    <img src="{% static 'images/dispose.jpg' %}" alt="How to dispose a pad infographic">
+</div>
+
+<!-- Section 2: How to Use a Tampon -->
+<div class="section">
+    <h2><strong> How to Use a Tampon</strong></h2>
+     <img src="{% static 'images/tampons.webp' %}" alt="How to use a tampon infographic">
+</div>
+
+<!-- Section 3: How to Use a Menstrual Cup -->
+<div class="section">
+    <h2><strong> How to Use a Menstrual Cup</strong> </h2>
+    <img src="{% static 'images/cup.jpg' %}" alt="How to use a menstrual cup infographic">
+</div>
+
+{% endblock %}

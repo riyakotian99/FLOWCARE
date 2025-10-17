@@ -1,0 +1,29 @@
+<!-- templates/comfortwall/_report_modal.html -->
+<div id="report-modal" class="report-modal" aria-hidden="true" role="dialog" aria-modal="true" style="display:none;">
+  <div class="report-modal__backdrop" data-close="true"></div>
+  <div class="report-modal__panel" role="document" aria-labelledby="report-modal-title">
+    <h3 id="report-modal-title">Report post</h3>
+
+    <form id="report-form" method="post" action="{% url 'comfortwall:report' 0 %}">
+      {% csrf_token %}
+      <input type="hidden" name="post_id" id="report-post-id" value="">
+      <div class="report-options">
+        <label><input type="radio" name="reason" value="vulgar" checked> Contains vulgar/explicit content</label><br>
+        <label><input type="radio" name="reason" value="personal_info"> Includes personal or identifying info</label><br>
+        <label><input type="radio" name="reason" value="spam"> Spam / advertising</label><br>
+        <label><input type="radio" name="reason" value="harassment"> Harassment / hateful content</label><br>
+        <label><input type="radio" name="reason" value="other"> Other (explain)</label>
+      </div>
+
+      <div id="report-other-wrap" style="display:none; margin-top:.5rem;">
+        <label for="report-other">Please explain (optional):</label><br>
+        <textarea id="report-other" name="other_text" rows="3" style="width:100%;"></textarea>
+      </div>
+
+      <div style="margin-top:.75rem; display:flex; gap:.5rem; justify-content:flex-end;">
+        <button type="button" class="btn btn-secondary" data-close="true">Cancel</button>
+        <button type="submit" class="btn btn-danger" id="report-submit">Send report</button>
+      </div>
+    </form>
+  </div>
+</div>

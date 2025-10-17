@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="cyclemate-page">
+<div class="container" style="margin-top: 30px;">
+    <h2>Cycle Insights</h2>
+
+    {% if prediction %}
+    <div class="card" style="padding: 15px; margin-bottom: 20px;">
+        <h3>Next Period Prediction</h3>
+        <p><strong>Predicted Start:</strong> {{ prediction.predicted_start }}</p>
+        <p><strong>Predicted End:</strong> {{ prediction.predicted_end }}</p>
+    </div>
+    {% endif %}
+
+    {% if ovulation %}
+    <div class="card" style="padding: 15px; margin-bottom: 20px;">
+        <h3>Ovulation & Fertile Window</h3>
+        <p><strong>Ovulation Day:</strong> {{ ovulation.ovulation_day }}</p>
+        <p><strong>Fertile Window:</strong> {{ ovulation.fertile_start }} – {{ ovulation.fertile_end }}</p>
+    </div>
+    {% endif %}
+
+    {% if top_symptoms %}
+    <div class="card" style="padding: 15px; margin-bottom: 20px;">
+        <h3>Common Pre-Period Symptoms</h3>
+        <ul>
+            {% for symptom, count in top_symptoms %}
+              <li>{{ symptom|title }} — {{ count }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% else %}
+    <p>No insights yet. Add more daily logs to see trends!</p>
+    {% endif %}
+
+    <div style="margin-top: 20px;">
+        <a href="{% url 'flowapp:add_daily_log' %}" class="btn btn-primary">+ Add Daily Log</a>
+        <a href="{% url 'flowapp:list_daily_logs' %}" class="btn btn-info">View Daily Logs</a>
+    </div>
+</div>
+</div>
+{% endblock %}
